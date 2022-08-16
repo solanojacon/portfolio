@@ -7,7 +7,7 @@
 ***
 
 ### :question: Contextualização / *Contextualization*
-:question:
+
 Você trabalha em uma empresa do tipo e-commerce que vende produtos para cabelo personalizados.
 Para personalizar o produto, a empresa solicita que o cliente preencha um formulário onde
 irá contar sobre a sua rotina e seu cabelo. Após finalizar o preenchimento, o cliente é
@@ -28,10 +28,9 @@ automatically directed to the checkout, where he will choose to close the purcha
 - *Product selection*
 - *Closing of purchase*
 
-:bowtie:
 
 ### :exclamation: Problema e desafio / *Problem and challenge*
-:exclamation:
+
 A empresa está gastando muito dinheiro com disparos via Whatsapp para pessoas que preenchem o formulário (leads), 
 desta forma seria interessante qualificar quem são os leads que possuem maior probabilidade de efetuar uma compra
 e assim tornar os disparos mais efetivos.
@@ -50,7 +49,7 @@ and thus make the shots more effective.*
 *To do this, access your company's database to collect data, and use the resources at your disposal to solve the problem and present your conclusions.*
 
 
-### Recursos / *Resources*
+### :computer: Recursos / *Resources*
 
 Sua empresa contém um banco de dados relacional (Postgres) hospedado remotamente, com as credenciais de acesso listadas [aqui](db_access.txt). O banco contém a seguinte estrutura de tabelas e relações:
 
@@ -60,7 +59,7 @@ Sua empresa contém um banco de dados relacional (Postgres) hospedado remotament
 
 
 ### :rocket: Entregas / *Deliveries*
-:rocket:
+
 > A entrega deve conter um arquivo .ipynb (Jupyter notebook) contendo toda evolução da solução, sendo que os seguintes pontos devem estar presentes:
 > 1. Leitura dos dados e normalização
 > 1. Separação de bases para treinar e efetuar o crossvalidation
