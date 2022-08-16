@@ -1,0 +1,6 @@
+Host: <host>
+Database: <hatabase>
+User: <user>
+Port: <port>
+Password: <password>
+URI: <URI>
