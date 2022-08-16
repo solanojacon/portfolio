@@ -1,8 +1,0 @@
-Geral:
-- material precisar estar em Inglês, se estiver em Português incluir tradução para o Inglês em itálico
-- apagar todos os dados
-- apagar o nome da empresa ou qualquer outra informação que possa identificar o material
-- apagar a data de desenvolvimento do material
-
-Notebook:
-- apagar os primeiros blocos referentes à compatibilidade com o Google Colab
