@@ -1,10 +1,8 @@
 # Correlação entre Compradores e Leads / *Correlation Between Buyers and Leads*
 
-***
 
 ## Desafio de Ciência de Dados / *Data Science Challenge*
 
-***
 
 ### :question: Contextualização / *Contextualization*
 
