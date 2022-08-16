@@ -1,4 +1,4 @@
-# Correlação entre Compradores e Leads / *Correlation Between Buyers and Leads*
+# :moneybag: Correlação entre Compradores e Leads / *Correlation Between Buyers and Leads*
 
 
 ## Desafio de Ciência de Dados / *Data Science Challenge*
