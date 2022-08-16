@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=jupyternotebooks,python
 
 ### data-science-portfolio - CUSTOM ###
+README.ipynb
 unshared/
 
 ### JupyterNotebooks ###
