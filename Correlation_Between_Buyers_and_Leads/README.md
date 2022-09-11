@@ -60,7 +60,8 @@ Sua empresa contém um banco de dados relacional (Postgres) hospedado remotament
 
 > A entrega deve conter um arquivo .ipynb (Jupyter notebook) contendo toda evolução da solução, sendo que os seguintes pontos devem estar presentes:
 > 1. Leitura dos dados e normalização
-> 1. Separação de bases para treinar e efetuar o crossvalidation
+> 1. Escolha do algoritmo
+> 1. Separação dos dados em treino e teste, e treinamento do modelo
 > 1. Respaldo teórico e prático sobre as escolhas dos algoritmos (podendo ser mais de um)
 > 1. Como e porquê foram escolhidas as features analisadas
 > 1. Salvar o arquivo de treinamento, fazer sua leitura e gerar o score
@@ -68,7 +69,8 @@ Sua empresa contém um banco de dados relacional (Postgres) hospedado remotament
 
 > *The delivery must contain an .ipynb file (Jupyter notebook) containing the entire evolution of the solution, and the following points must be present:*
 > 1. *Data reading and normalization*
-> 1. *Separation of bases for training and crossvalidation*
+> 1. *Algorithm choice*
+> 1. *Separation of data into training and testing, and model training*
 > 1. *Theoretical and practical support on the choices of algorithms (there may be more than one)*
 > 1. *How and why the analyzed features were chosen*
 > 1. *Save the training file, read it and generate the score*

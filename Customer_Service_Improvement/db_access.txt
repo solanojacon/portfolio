@@ -1,0 +1,4 @@
+Server: <server>
+Database: <database>
+UID: <UID>
+Password: <password>
