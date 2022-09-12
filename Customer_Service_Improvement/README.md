@@ -1,4 +1,4 @@
-# :raised_hand: :raising_hand: Melhoria do Atendimento ao Cliente / *Customer Service Improvement*
+# :raising_hand: Melhoria do Atendimento ao Cliente / *Customer Service Improvement*
 
 
 ## Desafio de Ciência de Dados / *Data Science Challenge*

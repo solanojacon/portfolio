@@ -31,7 +31,7 @@ Contents:
 - [Notebook with the Solution](Registrated_Vehicle_Forecast/Registrated_Vehicle_Forecast.ipynb)
 
 
-## EMOJI Customer Service Improvement
+## :raising_hand: Customer Service Improvement
 
 Methods and programming languages used: **Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
 
