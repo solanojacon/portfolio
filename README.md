@@ -29,3 +29,12 @@ Methods and programming languages used: **Machine Learning** (Time Series), **Py
 Contents:
 - [Challenge Information](Registrated_Vehicle_Forecast/README.md)
 - [Notebook with the Solution](Registrated_Vehicle_Forecast/Registrated_Vehicle_Forecast.ipynb)
+
+
+## EMOJI Customer Service Improvement
+
+Methods and programming languages used: **Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
+
+Contents:
+- [Challenge Information](Customer_Service_Improvement/README.md)
+- [Notebook with the Solution](Customer_Service_Improvement/Customer_Service_Improvement.ipynb)
