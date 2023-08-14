@@ -3,11 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=jupyternotebooks,python
 
 ### data-science-portfolio - CUSTOM ###
-README.ipynb
-data/
-unshared/
-* - BACKUP.ipynb
-*.pkl
+
 
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
