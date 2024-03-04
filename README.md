@@ -1,7 +1,7 @@
-# 🤖 Data Science Portfolio
-
-
 # 🧠 Solano Jacon ([LinkedIn](https://www.linkedin.com/in/solanojacon/))
+
+
+# 🤖 Data Science Portfolio
 
 
 ## :moneybag: Correlation Between Buyers and Leads
