@@ -1,10 +1,10 @@
 from django import forms
 from django.forms import inlineformset_factory, ModelForm, SelectDateWidget, Textarea
-from .models import List, Task, Subtask
+from .models import TaskLists, Tasks, Subtasks
 
 class ListForm(ModelForm):
     class Meta:
-        model = List
+        model = TaskLists
         fields = '__all__'
         widgets = {
             'owner': forms.TextInput(attrs={'readonly': True}),
@@ -12,7 +12,7 @@ class ListForm(ModelForm):
 
 class TaskForm(ModelForm):
     class Meta:
-        model = Task
+        model = Tasks
         fields = '__all__'
         # fields = ['title']
         # exclude = ['owner']
@@ -30,10 +30,10 @@ class TaskForm(ModelForm):
 
 class SubtaskForm(ModelForm):
     class Meta:
-        model = Subtask
+        model = Subtasks
         fields = '__all__'
 
 SubtaskFormSet = inlineformset_factory(
-    Task, Subtask, form=SubtaskForm,
+    Tasks, Subtasks, form=SubtaskForm,
     extra=0, can_delete=True, can_delete_extra=True
 )

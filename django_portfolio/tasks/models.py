@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
-class List(models.Model):
+class TaskLists(models.Model):
     COLOR_PALETTE = [
         ('#FFFFFF', 'White'),
         ('#C0C0C0', 'Silver'),
@@ -33,9 +33,9 @@ class List(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-class Task(models.Model):
+class Tasks(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
-    list = models.ForeignKey(List, on_delete=models.CASCADE, blank=False, null=False)
+    list = models.ForeignKey(TaskLists, on_delete=models.CASCADE, blank=False, null=False)
     details = models.CharField(max_length=1000, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     starred = models.BooleanField(default=False)
@@ -49,11 +49,11 @@ class Task(models.Model):
         return f'{self.owner} | {self.list} | {self.title}'
     @property
     def is_overdue(self):
-        return bool(self.date and date.today() > self.date)
+        return bool(self.date and date.today() > self.date and self.completed == False)
 
-class Subtask(models.Model):
+class Subtasks(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, blank=False, null=False)
+    task = models.ForeignKey(Tasks, on_delete=models.CASCADE, blank=False, null=False)
     completed = models.BooleanField(default=False)
     class Meta:
         ordering = ['task', 'title']

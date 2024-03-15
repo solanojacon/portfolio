@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.template import loader
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from .models import List, Task
+from .models import TaskLists, Tasks
 from .forms import ListForm, TaskForm, SubtaskFormSet
 
 def index(request):
@@ -27,9 +27,9 @@ def test(request):
 # def tasks(request):
 #     superuser = request.user.is_superuser
 #     if superuser == True:
-#         tasks_data = Task.objects.all()
+#         tasks_data = Tasks.objects.all()
 #     else:
-#         tasks_data = Task.objects.filter(owner__exact=request.user.id)
+#         tasks_data = Tasks.objects.filter(owner__exact=request.user.id)
 #     context = {
 #         'tasks_data': tasks_data,
 #         'superuser': superuser,
@@ -49,7 +49,7 @@ def test(request):
 
 # @login_required
 # def edit_task(request, pk):
-#     tasks_data = get_object_or_404(Task, pk=pk)
+#     tasks_data = get_object_or_404(Tasks, pk=pk)
 #     form = TaskForm(instance=tasks_data)
 #     if request.method=='POST':
 #         form = TaskForm(request.POST, instance=tasks_data)
@@ -61,7 +61,7 @@ def test(request):
 
 @login_required
 def delete_task(request, pk):
-    tasks_data = get_object_or_404(Task, pk=pk)
+    tasks_data = get_object_or_404(Tasks, pk=pk)
     tasks_data.delete()
     return redirect('tasks:tasks')
 
@@ -69,9 +69,9 @@ def delete_task(request, pk):
 def lists(request):
     superuser = request.user.is_superuser
     if superuser == True:
-        lists_data = List.objects.all()
+        lists_data = TaskLists.objects.all()
     else:
-        lists_data = List.objects.filter(owner__exact=request.user.id)
+        lists_data = TaskLists.objects.filter(owner__exact=request.user.id)
     context = {
         'lists_data': lists_data,
         'superuser': superuser,
@@ -91,7 +91,7 @@ def add_list(request):
 
 @login_required
 def edit_list(request, pk):
-    lists_data = get_object_or_404(List, pk=pk)
+    lists_data = get_object_or_404(TaskLists, pk=pk)
     form = ListForm(instance=lists_data)
     if request.method=='POST':
         form = ListForm(request.POST, instance=lists_data)
@@ -103,7 +103,7 @@ def edit_list(request, pk):
 
 @login_required
 def delete_list(request, pk):
-    lists_data = get_object_or_404(List, pk=pk)
+    lists_data = get_object_or_404(TaskLists, pk=pk)
     lists_data.delete()
     return redirect('tasks:lists')
 
@@ -113,9 +113,9 @@ class TaskList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         superuser = self.request.user.is_superuser
         if superuser == True:
-            return Task.objects.all()
+            return Tasks.objects.all()
         else:
-            return Task.objects.filter(owner__exact=self.request.user.id)
+            return Tasks.objects.filter(owner__exact=self.request.user.id)
     template_name = "tasks.html"
     context_object_name = "tasks_data"
     def get_context_data(self, **kwargs):
@@ -127,7 +127,7 @@ class TaskList(LoginRequiredMixin, ListView):
 
 class TaskInline(LoginRequiredMixin):
     form_class = TaskForm
-    model = Task
+    model = Tasks
     template_name = "add_edit_task.html"
 
     def form_valid(self, form):
@@ -203,7 +203,7 @@ class TaskUpdate(TaskInline, UpdateView):
 # @login_required
 # def delete_subtask(request, pk):
 #     try:
-#         subtask = Subtask.objects.get(id=pk)
+#         subtask = Subtasks.objects.get(id=pk)
 #     except Subtask.DoesNotExist:
 #         messages.success(
 #             request, 'Object Does not exit'

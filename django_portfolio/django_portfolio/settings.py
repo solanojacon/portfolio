@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'colorfield',
     'tasks',
+    'notes',
 ]
 
 MIDDLEWARE = [
