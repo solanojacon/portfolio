@@ -79,7 +79,11 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR).rsplit(os.path.sep, 2)[0] + os.path.sep + \
+                str(BASE_DIR).rsplit(os.path.sep, 2)[1] + '-data' + os.path.sep + \
+                str(BASE_DIR).rsplit(os.path.sep, 2)[2] + os.path.sep + \
+                'db.sqlite3',
     }
 }
 
