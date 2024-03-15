@@ -1,0 +1,64 @@
+<!-- lists.html -->
+
+
+{% extends "master.html" %}
+
+
+{% block title %}Lists{% endblock %}
+
+
+{% block head %}
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      {% comment %} width: 100%; {% endcomment %}
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+
+  <br><h1>Lists</h1>
+
+  <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px" 
+             onclick="document.location='{% url 'tasks:add_list' %}'">Add List</button></p>
+
+  {% if lists_data %}
+    <table>
+      <tr>
+        {% if superuser %}
+          <th style="text-align:center">Owner</th>
+        {% endif %}
+        <th style="text-align:center">Name</th>
+        <th style="text-align:center">Color</th>
+        <th style="text-align:center">Action</th>
+      </tr>
+      {% for list_data in lists_data %}
+      <tr>
+        {% if superuser %}
+          <td>{{ list_data.owner }}</td>
+        {% endif %}
+        <td><a title="Edit" href="{{ list_data.get_absolute_url }}">{{ list_data.name }}</a></td>
+        <td style="background-color:{{ list_data.color }}80"></td>
+        <td style="text-align:center">
+          <a title="Edit" style="text-decoration:none" href="{{ list_data.get_absolute_url }}">&#9999;&#65039;</a>
+          <a title="Delete" style="text-decoration:none" href="{% url 'tasks:delete_list' list_data.id %}">&#128465;&#65039;</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No lists found.</p>
+  {% endif %}
+
+{% endblock %}

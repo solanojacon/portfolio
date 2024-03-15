@@ -1,0 +1,108 @@
+<!-- tasks.html -->
+
+
+{% extends "master.html" %}
+
+
+{% block title %}Tasks{% endblock %}
+
+
+{% block head %}
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      {% comment %} width: 100%; {% endcomment %}
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+
+  <br><h1>Tasks</h1>
+
+  <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px" 
+             onclick="document.location='{% url 'tasks:add_task' %}'">Add Task</button></p>
+
+  {% if tasks_data %}
+
+    <table>
+      <tr>
+        {% if superuser %}
+          <th style="text-align:center">Owner</th>
+        {% endif %}
+        <th style="text-align:center">Title</th>
+        <th style="text-align:center">List</th>
+        <th style="text-align:center">Date</th>
+        <th style="text-align:center">Starred</th>
+        <th style="text-align:center">Completed</th>
+        <th style="text-align:center">Action</th>
+      </tr>
+      {% for task_data in tasks_data %}
+      <tr>
+        {% if superuser %}
+          <td>{{ task_data.owner }}</td>
+        {% endif %}
+        <td><a title="Edit" href="{{ task_data.get_absolute_url }}">{{ task_data.title }}</a></td>
+        <td style="background-color:{{ task_data.list.color }}80">{{ task_data.list }}</td>
+        {% if task_data.is_overdue %}
+          <td style="text-align:center;color:Tomato">{{ task_data.date|date:"d/m/Y" }}</td>
+        {% else %}
+          <td style="text-align:center">{{ task_data.date|date:"d/m/Y" }}</td>
+        {% endif %}
+        {% if task_data.starred == True %}
+          <td style="text-align:center">&#11088;</td>
+        {% else %}
+          <td></td>
+        {% endif %}
+        {% if task_data.completed == True %}
+          <td style="text-align:center">&#9989;</td>
+        {% else %}
+          <td></td>
+        {% endif %}
+        <td style="text-align:center">
+          <a title="Edit" style="text-decoration:none" href="{{ task_data.get_absolute_url }}">&#9999;&#65039;</a>
+          <a title="Delete" style="text-decoration:none" href="{% url 'tasks:delete_task' task_data.id %}">&#128465;&#65039;</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% comment %}
+    {% if is_paginated %}
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    {% endif %}
+    {% endcomment %}
+
+  {% else %}
+
+    <p>No tasks found.</p>
+
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<!-- add_list.html -->
+
+
+{% extends "master.html" %}
+
+
+{% block title %}Lists - Add{% endblock %}
+
+
+{% block content %}
+
+  <br><p>Back to <a href="{% url 'tasks:lists' %}">Lists</a></p>
+
+  <br><h1>Lists - Add</h1><br>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" style="background-color:Tomato;color:white;padding:10px;text-align:center;border:none;border-radius:6px">Add List</button>
+  </form>
+
+{% endblock %}
+
+
+

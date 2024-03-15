@@ -1,0 +1,16 @@
+<!-- index.html -->
+
+
+{% extends "master.html" %}
+
+
+{% block title %}Task - Index{% endblock %}
+
+
+{% block content %}
+
+  <h1>Task - Index</h1>
+
+  <p><a href="{% url 'tasks:tasks' %}">Tasks</a></p>
+
+{% endblock %}
