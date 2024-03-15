@@ -4,14 +4,14 @@
 {% extends "master.html" %}
 
 
-{% block title %}Task Lists - Add{% endblock %}
+{% block title %}Note Lists - Add{% endblock %}
 
 
 {% block content %}
 
-  <br><p>Back to <a href="{% url 'tasks:lists' %}">Task Lists</a></p>
+  <br><p>Back to <a href="{% url 'notes:lists' %}">Note Lists</a></p>
 
-  <br><h1>Task Lists - Add</h1><br>
+  <br><h1>Note Lists - Add</h1><br>
 
   <form action="" method="POST">
     {% csrf_token %}
@@ -20,6 +20,3 @@
   </form>
 
 {% endblock %}
-
-
-

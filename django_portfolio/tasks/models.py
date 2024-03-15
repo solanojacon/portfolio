@@ -36,10 +36,10 @@ class TaskLists(models.Model):
 class Tasks(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     list = models.ForeignKey(TaskLists, on_delete=models.CASCADE, blank=False, null=False)
-    details = models.CharField(max_length=1000, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     starred = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
+    details = models.CharField(max_length=1000, blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     class Meta:
         ordering = ['owner', 'list', 'title']

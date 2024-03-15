@@ -1,17 +1,17 @@
-<!-- edit_list.html -->
+<!-- edit_note.html -->
 
 
 {% extends "master.html" %}
 
 
-{% block title %}Task Lists - Edit{% endblock %}
+{% block title %}Notes - Edit{% endblock %}
 
 
 {% block content %}
 
-  <br><p>Back to <a href="{% url 'tasks:lists' %}">Task Lists</a></p>
+  <br><p>Back to <a href="{% url 'notes:notes' %}">Lists</a></p>
 
-  <br><h1>Task Lists - Edit</h1><br>
+  <br><h1>Notes - Edit</h1><br>
 
   <form action="" method="POST">
     {% csrf_token %}

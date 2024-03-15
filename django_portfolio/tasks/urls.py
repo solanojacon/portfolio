@@ -10,7 +10,7 @@ app_name = 'tasks'
 urlpatterns = [
     # path('', views.index, name='index'),
     path('', RedirectView.as_view(url='tasks/', permanent=True)),
-    path('test/', views.test, name='test'),
+    path('tasks/test/', views.test, name='test'),
     # path('tasks/', views.tasks, name='tasks'),
     # path('tasks/add/', views.add_task, name='add_task'),
     # path('tasks/edit/<int:pk>', views.edit_task, name='edit_task'),

@@ -4,7 +4,7 @@
 {% extends "master.html" %}
 
 
-{% block title %}Task Lists{% endblock %}
+{% block title %}Note Lists{% endblock %}
 
 
 {% block head %}
@@ -28,10 +28,10 @@
 
 {% block content %}
 
-  <br><h1>Task Lists</h1>
+  <br><h1>Note Lists</h1>
 
   <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px" 
-             onclick="document.location='{% url 'tasks:add_list' %}'">Add List</button></p>
+             onclick="document.location='{% url 'notes:add_list' %}'">Add List</button></p>
 
   {% if lists_data %}
     <table>
@@ -52,7 +52,7 @@
         <td style="background-color:{{ list_data.color }}80"></td>
         <td style="text-align:center">
           <a title="Edit" style="text-decoration:none" href="{{ list_data.get_absolute_url }}">&#9999;&#65039;</a>
-          <a title="Delete" style="text-decoration:none" href="{% url 'tasks:delete_list' list_data.id %}">&#128465;&#65039;</a>
+          <a title="Delete" style="text-decoration:none" href="{% url 'notes:delete_list' list_data.id %}">&#128465;&#65039;</a>
         </td>
       </tr>
       {% endfor %}
