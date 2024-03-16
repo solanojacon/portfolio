@@ -1,14 +1,11 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from django.views.generic import RedirectView
 from . import views
 
 app_name = 'notes'
 
 urlpatterns = [
-    # path('', views.index, name='index'),
-    # path('', RedirectView.as_view(url='notes/', permanent=True)),
     path('notes/test/', views.test, name='test'),
     path('notes/', views.notes, name='notes'),
     path('notes/add/', views.add_note, name='add_note'),

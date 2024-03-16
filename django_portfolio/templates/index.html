@@ -4,13 +4,15 @@
 {% extends "master.html" %}
 
 
-{% block title %}Tasks - Index{% endblock %}
+{% block title %}Django Portfolio{% endblock %}
 
 
 {% block content %}
 
-  <h1>Tasks - Index</h1>
-
+  <h1>Tasks</h1>
   <p><a href="{% url 'tasks:tasks' %}">Tasks</a></p>
+
+  <h1>Notes</h1>
+  <p><a href="{% url 'notes:notes' %}">Notes</a></p>
 
 {% endblock %}

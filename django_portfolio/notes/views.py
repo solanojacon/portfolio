@@ -1,23 +1,13 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView, FormMixin
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import loader
-from django.urls import reverse
-from django.utils.decorators import method_decorator
 from .models import NoteLists, Notes
 from .forms import ListForm, NoteForm
 
-def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
-
 @login_required
 def test(request):
-    template = loader.get_template('test.html')
+    template = loader.get_template('notes_test.html')
     context = {
         'fruits_data': ['Apple', 'Banana', 'Cherry'],
     }
@@ -34,7 +24,7 @@ def notes(request):
         'notes_data': notes_data,
         'superuser': superuser,
     }
-    return render(request, 'notes.html', context) # render is a shortcut for HttpResponse
+    return render(request, 'notes_notes.html', context)
 
 @login_required
 def add_note(request):
@@ -45,7 +35,7 @@ def add_note(request):
             form.save()
             return redirect('notes:notes')
     context = {'form': form}
-    return render(request, 'add_note.html', context)
+    return render(request, 'notes_add_note.html', context)
 
 @login_required
 def edit_note(request, pk):
@@ -57,7 +47,7 @@ def edit_note(request, pk):
             form.save()
             return redirect('notes:notes')
     context = {'form': form}
-    return render(request, 'edit_note.html', context)
+    return render(request, 'notes_edit_note.html', context)
 
 @login_required
 def delete_note(request, pk):
@@ -76,7 +66,7 @@ def lists(request):
         'lists_data': lists_data,
         'superuser': superuser,
     }
-    return render(request, 'lists.html', context)
+    return render(request, 'notes_lists.html', context)
 
 @login_required
 def add_list(request):
@@ -87,7 +77,7 @@ def add_list(request):
             form.save()
             return redirect('notes:lists')
     context = {'form': form}
-    return render(request, 'add_list.html', context)
+    return render(request, 'notes_add_list.html', context)
 
 @login_required
 def edit_list(request, pk):
@@ -99,7 +89,7 @@ def edit_list(request, pk):
             form.save()
             return redirect('notes:lists')
     context = {'form': form}
-    return render(request, 'edit_list.html', context)
+    return render(request, 'notes_edit_list.html', context)
 
 @login_required
 def delete_list(request, pk):

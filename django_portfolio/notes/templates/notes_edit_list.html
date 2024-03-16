@@ -1,0 +1,36 @@
+<!-- notes_edit_list.html -->
+
+
+{% extends "master.html" %}
+
+
+{% block title %}Note Lists - Edit{% endblock %}
+
+
+{% block content %}
+
+  <br><p>Back to <a href="{% url 'notes:lists' %}">Note Lists</a></p>
+
+  <br><h1>Note Lists - Edit</h1><br>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+      <label>{{ field.label }}</label>
+      {% if field.field.required %}
+        <span style="color:red">*</span>
+      {% endif %}
+      {{ field }}
+      {% if field.help_text %}
+        <small style="color:grey">{{ field.help_text }}</small>
+      {% endif %}
+      </p>
+      {% for error in field.errors %}
+        <p style="color:red">{{ error }}</p>
+      {% endfor %}
+    {% endfor %}
+    <button type="submit" style="background-color:Tomato;color:white;padding:10px;text-align:center;border:none;border-radius:6px">Save Changes</button>
+  </form>
+
+{% endblock %}

@@ -1,13 +1,10 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView, FormMixin
-from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic.edit import CreateView, UpdateView
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import loader
-from django.urls import reverse
-from django.utils.decorators import method_decorator
 from .models import TaskLists, Tasks
 from .forms import ListForm, TaskForm, SubtaskFormSet
 
@@ -17,47 +14,11 @@ def index(request):
 
 @login_required
 def test(request):
-    template = loader.get_template('test.html')
+    template = loader.get_template('tasks_test.html')
     context = {
         'fruits_data': ['Apple', 'Banana', 'Cherry'],
     }
     return HttpResponse(template.render(context, request))
-
-# @login_required
-# def tasks(request):
-#     superuser = request.user.is_superuser
-#     if superuser == True:
-#         tasks_data = Tasks.objects.all()
-#     else:
-#         tasks_data = Tasks.objects.filter(owner__exact=request.user.id)
-#     context = {
-#         'tasks_data': tasks_data,
-#         'superuser': superuser,
-#     }
-#     return render(request, 'tasks.html', context) # render is a shortcut for HttpResponse
-
-# @login_required
-# def add_task(request):
-#     form = TaskForm(initial={'owner': request.user.id})
-#     if request.method=='POST':
-#         form = TaskForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tasks:tasks')
-#     context = {'form': form}
-#     return render(request, 'add_task.html', context)
-
-# @login_required
-# def edit_task(request, pk):
-#     tasks_data = get_object_or_404(Tasks, pk=pk)
-#     form = TaskForm(instance=tasks_data)
-#     if request.method=='POST':
-#         form = TaskForm(request.POST, instance=tasks_data)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tasks:tasks')
-#     context = {'form': form}
-#     return render(request, 'edit_task.html', context)
 
 @login_required
 def delete_task(request, pk):
@@ -76,7 +37,7 @@ def lists(request):
         'lists_data': lists_data,
         'superuser': superuser,
     }
-    return render(request, 'lists.html', context)
+    return render(request, 'tasks_lists.html', context)
 
 @login_required
 def add_list(request):
@@ -87,7 +48,7 @@ def add_list(request):
             form.save()
             return redirect('tasks:lists')
     context = {'form': form}
-    return render(request, 'add_list.html', context)
+    return render(request, 'tasks_add_list.html', context)
 
 @login_required
 def edit_list(request, pk):
@@ -99,7 +60,7 @@ def edit_list(request, pk):
             form.save()
             return redirect('tasks:lists')
     context = {'form': form}
-    return render(request, 'edit_list.html', context)
+    return render(request, 'tasks_edit_list.html', context)
 
 @login_required
 def delete_list(request, pk):
@@ -116,7 +77,7 @@ class TaskList(LoginRequiredMixin, ListView):
             return Tasks.objects.all()
         else:
             return Tasks.objects.filter(owner__exact=self.request.user.id)
-    template_name = "tasks.html"
+    template_name = "tasks_tasks.html"
     context_object_name = "tasks_data"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,7 +89,7 @@ class TaskList(LoginRequiredMixin, ListView):
 class TaskInline(LoginRequiredMixin):
     form_class = TaskForm
     model = Tasks
-    template_name = "add_edit_task.html"
+    template_name = "tasks_add_edit_task.html"
 
     def form_valid(self, form):
         if form.instance.owner is None:

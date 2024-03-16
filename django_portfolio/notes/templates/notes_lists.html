@@ -1,4 +1,4 @@
-<!-- lists.html -->
+<!-- notes_lists.html -->
 
 
 {% extends "master.html" %}
@@ -31,7 +31,7 @@
   <br><h1>Note Lists</h1>
 
   <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px" 
-             onclick="document.location='{% url 'notes:add_list' %}'">Add List</button></p>
+             onclick="document.location='{% url 'notes:add_list' %}'">Add Note List</button></p>
 
   {% if lists_data %}
     <table>

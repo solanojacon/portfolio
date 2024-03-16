@@ -1,4 +1,4 @@
-<!-- lists.html -->
+<!-- tasks_lists.html -->
 
 
 {% extends "master.html" %}
@@ -31,7 +31,7 @@
   <br><h1>Task Lists</h1>
 
   <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px" 
-             onclick="document.location='{% url 'tasks:add_list' %}'">Add List</button></p>
+             onclick="document.location='{% url 'tasks:add_list' %}'">Add Task List</button></p>
 
   {% if lists_data %}
     <table>
