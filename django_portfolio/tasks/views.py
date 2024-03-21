@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponse
@@ -8,9 +9,11 @@ from django.template import loader
 from .models import TaskLists, Tasks
 from .forms import ListForm, TaskForm, SubtaskFormSet
 
+
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
+
 
 @login_required
 def test(request):
@@ -20,11 +23,6 @@ def test(request):
     }
     return HttpResponse(template.render(context, request))
 
-@login_required
-def delete_task(request, pk):
-    tasks_data = get_object_or_404(Tasks, pk=pk)
-    tasks_data.delete()
-    return redirect('tasks:tasks')
 
 @login_required
 def lists(request):
@@ -33,11 +31,16 @@ def lists(request):
         lists_data = TaskLists.objects.all()
     else:
         lists_data = TaskLists.objects.filter(owner__exact=request.user.id)
+    paginator = Paginator(lists_data, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'lists_data': lists_data,
         'superuser': superuser,
+        'page_obj': page_obj,
     }
     return render(request, 'tasks_lists.html', context)
+
 
 @login_required
 def add_list(request):
@@ -49,6 +52,7 @@ def add_list(request):
             return redirect('tasks:lists')
     context = {'form': form}
     return render(request, 'tasks_add_list.html', context)
+
 
 @login_required
 def edit_list(request, pk):
@@ -62,6 +66,7 @@ def edit_list(request, pk):
     context = {'form': form}
     return render(request, 'tasks_edit_list.html', context)
 
+
 @login_required
 def delete_list(request, pk):
     lists_data = get_object_or_404(TaskLists, pk=pk)
@@ -69,8 +74,8 @@ def delete_list(request, pk):
     return redirect('tasks:lists')
 
 
-
 class TaskList(LoginRequiredMixin, ListView):
+    paginate_by = 10
     def get_queryset(self):
         superuser = self.request.user.is_superuser
         if superuser == True:
@@ -83,7 +88,6 @@ class TaskList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['superuser'] = self.request.user.is_superuser
         return context
-
 
 
 class TaskInline(LoginRequiredMixin):
@@ -122,7 +126,6 @@ class TaskInline(LoginRequiredMixin):
             subtask.save()
 
 
-
 class TaskCreate(TaskInline, CreateView):
 
     def get_context_data(self, **kwargs):
@@ -142,7 +145,6 @@ class TaskCreate(TaskInline, CreateView):
             }
 
 
-
 class TaskUpdate(TaskInline, UpdateView):
 
     def get_context_data(self, **kwargs):
@@ -157,9 +159,14 @@ class TaskUpdate(TaskInline, UpdateView):
         }
 
 
+@login_required
+def delete_task(request, pk):
+    tasks_data = get_object_or_404(Tasks, pk=pk)
+    tasks_data.delete()
+    return redirect('tasks:tasks')
+
 
 # '''This function is for custom added delete button functionality. If you don't want to use custom delete buttons than don't add this'''
-
 
 # @login_required
 # def delete_subtask(request, pk):
@@ -169,10 +176,10 @@ class TaskUpdate(TaskInline, UpdateView):
 #         messages.success(
 #             request, 'Object Does not exit'
 #             )
-#         return redirect('tasks:update_task', pk=subtask.task.id) # REVISAR!!!
+#         return redirect('tasks:update_task', pk=subtask.task.id)
 
 #     subtask.delete()
 #     messages.success(
 #             request, 'Subtask deleted successfully'
 #             )
-#     return redirect('tasks:update_task', pk=subtask.task.id) # REVISAR!!!
+#     return redirect('tasks:update_task', pk=subtask.task.id)

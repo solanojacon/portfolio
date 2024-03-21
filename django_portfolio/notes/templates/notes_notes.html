@@ -4,7 +4,7 @@
 {% extends "master.html" %}
 
 
-{% block title %}Notes{% endblock %}
+{% block title %}Django Portfolio{% endblock %}
 
 
 {% block head %}
@@ -45,7 +45,8 @@
         <th style="text-align:center">Starred</th>
         <th style="text-align:center">Action</th>
       </tr>
-      {% for note_data in notes_data %}
+      {% comment %} {% for note_data in notes_data %} {% endcomment %}
+      {% for note_data in page_obj %}
       <tr>
         {% if superuser %}
           <td>{{ note_data.owner }}</td>
@@ -65,27 +66,23 @@
       {% endfor %}
     </table>
 
-    {% comment %}
-    {% if is_paginated %}
+    <p>
       <div class="pagination">
         <span class="step-links">
           {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
           {% endif %}
-
           <span class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
           </span>
-
           {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">next</a>
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
           {% endif %}
         </span>
       </div>
-    {% endif %}
-    {% endcomment %}
+    </p>
 
   {% else %}
 

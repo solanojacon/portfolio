@@ -22,6 +22,8 @@
   <!-- Colorfield -->
   <script src="{% static 'colorfield/jscolor/jscolor.js' %}"></script>
   <script src="{% static 'colorfield/colorfield.js' %}"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
   {% block head %}{% endblock %}
 
@@ -33,10 +35,18 @@
     <div class="row">
 
       <div class="col-sm-2">
+        {% load static %}
+        <br><img src="{% static 'images/portfolio.png' %}" alt="My image" width="50" height="50">
+        <br><h5>Django Portfolio</h5>
         <ul style="margin-top:20px;padding:0;list-style:none">
           {% if user.is_authenticated %}
             <li>User: {{ user.get_username }}</li>
-            <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link">Logout</button>
+              </form>
+            </li>
           {% else %}
             <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
           {% endif %}
@@ -49,7 +59,7 @@
                    onclick="document.location='{% url 'notes:notes' %}'">Notes</button></p>
         <p><button style="background-color:MediumSeaGreen;color:white;padding:10px;text-align:center;border:none;border-radius:6px;width:150px"
                    onclick="document.location='{% url 'notes:lists' %}'">Note Lists</button></p>
-</div>
+      </div>
 
       <div class="col-sm-10 ">
         {% block content %}{% endblock %}

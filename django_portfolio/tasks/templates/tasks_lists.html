@@ -4,7 +4,7 @@
 {% extends "master.html" %}
 
 
-{% block title %}Task Lists{% endblock %}
+{% block title %}Django Portfolio{% endblock %}
 
 
 {% block head %}
@@ -34,6 +34,7 @@
              onclick="document.location='{% url 'tasks:add_list' %}'">Add Task List</button></p>
 
   {% if lists_data %}
+
     <table>
       <tr>
         {% if superuser %}
@@ -43,7 +44,8 @@
         <th style="text-align:center">Color</th>
         <th style="text-align:center">Action</th>
       </tr>
-      {% for list_data in lists_data %}
+      {% comment %} {% for list_data in lists_data %} {% endcomment %}
+      {% for list_data in page_obj %}
       <tr>
         {% if superuser %}
           <td>{{ list_data.owner }}</td>
@@ -57,8 +59,29 @@
       </tr>
       {% endfor %}
     </table>
+
+    <p>
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </p>
+
   {% else %}
+
     <p>No lists found.</p>
+
   {% endif %}
 
 {% endblock %}
