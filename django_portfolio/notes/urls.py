@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 from . import views
 
@@ -15,4 +13,4 @@ urlpatterns = [
     path('notes/lists/add/', views.add_list, name='add_list'),
     path('notes/lists/edit/<int:pk>', views.edit_list, name='edit_list'),
     path('notes/lists/delete/<int:pk>', views.delete_list, name='delete_list'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Enable the serving of static files during development
+]

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.views.generic import ListView
@@ -13,6 +14,15 @@ from .forms import ListForm, TaskForm, SubtaskFormSet
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
+
+
+def register(request):
+    form = UserCreationForm(request.POST or None)
+    if form.is_valid():
+        user_obj = form.save()
+        return redirect('/accounts/login')
+    context = {"form": form}
+    return render(request, 'registration/register.html', context)
 
 
 @login_required

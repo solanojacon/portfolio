@@ -4,7 +4,7 @@
 {% extends "master.html" %}
 
 
-{% block title %}Django Portfolio - Login{% endblock %}
+{% block title %}Django Portfolio{% endblock %}
 
 
 {% block content %}
@@ -42,5 +42,6 @@
 
   {# Assumes you set up the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  <p><a href="{% url 'tasks:register' %}">New to Django Portfolio? Register!</a></p>
 
 {% endblock %}
