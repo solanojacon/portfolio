@@ -10,7 +10,7 @@ app_name = 'tasks'
 urlpatterns = [
     # path('', views.index, name='index'),
     path('', RedirectView.as_view(url='tasks/', permanent=True)),
-    path('accounts/register/', views.register, name='register'),
+    path('register/', views.register, name='register'),
     path('tasks/test/', views.test, name='test'),
     path('tasks/', TaskList.as_view(), name='tasks'),
     path('tasks/add/', TaskCreate.as_view(), name='add_task'),
