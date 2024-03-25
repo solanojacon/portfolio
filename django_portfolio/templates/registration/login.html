@@ -41,7 +41,8 @@
   </form>
 
   {# Assumes you set up the password_reset view in your URLconf #}
-  <br><p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  <br>
+  {% comment %} <p><a href="{% url 'password_reset' %}">Lost password?</a></p> {% endcomment %}
   <p>Need an account? Please <a href="{% url 'tasks:register' %}">Register</a></p>
 
 {% endblock %}

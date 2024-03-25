@@ -11,6 +11,7 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('', RedirectView.as_view(url='tasks/', permanent=True)),
     path('register/', views.register, name='register'),
+    path('change_password', views.change_password, name='change_password'),
     path('tasks/test/', views.test, name='test'),
     path('tasks/', TaskList.as_view(), name='tasks'),
     path('tasks/add/', TaskCreate.as_view(), name='add_task'),

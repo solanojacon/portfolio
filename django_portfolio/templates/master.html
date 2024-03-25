@@ -42,13 +42,14 @@
           {% if user.is_authenticated %}
             <li>User: {{ user.get_username }}</li>
             <li>
-              <form method="post" action="{% url 'logout' %}">
+              <form method="post" action="{% url 'logout' %}?next={{ request.path }}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-link">Logout</button>
               </form>
             </li>
+            <li><a href="{% url 'tasks:change_password' %}?next={{ request.path }}" class="btn btn-link">Change Password</a></li>
           {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'login' %}" class="btn btn-link">Login</a></li>
           {% endif %}
         </ul>
         <p><button style="background-color:DodgerBlue;color:white;padding:10px;text-align:center;border:none;border-radius:6px;width:150px"

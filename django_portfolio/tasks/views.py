@@ -1,5 +1,6 @@
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.views.generic import ListView
@@ -21,8 +22,22 @@ def register(request):
     if form.is_valid():
         user_obj = form.save()
         return redirect('/accounts/login')
-    context = {"form": form}
+    context = {'form': form}
     return render(request, 'registration/register.html', context)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect(request.GET.get('next'))
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {'form': form}
+    return render(request, 'registration/change_password.html', context)
 
 
 @login_required
@@ -92,8 +107,8 @@ class TaskList(LoginRequiredMixin, ListView):
             return Tasks.objects.all()
         else:
             return Tasks.objects.filter(owner__exact=self.request.user.id)
-    template_name = "tasks_tasks.html"
-    context_object_name = "tasks_data"
+    template_name = 'tasks_tasks.html'
+    context_object_name = 'tasks_data'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['superuser'] = self.request.user.is_superuser
@@ -103,7 +118,7 @@ class TaskList(LoginRequiredMixin, ListView):
 class TaskInline(LoginRequiredMixin):
     form_class = TaskForm
     model = Tasks
-    template_name = "tasks_add_edit_task.html"
+    template_name = 'tasks_add_edit_task.html'
 
     def form_valid(self, form):
         if form.instance.owner is None:
@@ -145,7 +160,7 @@ class TaskCreate(TaskInline, CreateView):
         return context
 
     def get_named_formsets(self):
-        if self.request.method == "GET":
+        if self.request.method == 'GET':
             return {
                 'subtasks': SubtaskFormSet(prefix='subtasks'),
             }
