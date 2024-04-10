@@ -37,7 +37,7 @@ class Notes(models.Model):
     list = models.ForeignKey(NoteLists, on_delete=models.CASCADE, blank=False, null=False)
     starred = models.BooleanField(default=False)
     note = models.TextField(blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     class Meta:
         ordering = ['owner', 'list', 'title']
     def get_absolute_url(self):

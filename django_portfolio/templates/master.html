@@ -40,7 +40,7 @@
         <br><h5>Django Portfolio</h5>
         <ul style="margin-top:20px;padding:0;list-style:none">
           {% if user.is_authenticated %}
-            <li>User: {{ user.get_username }}</li>
+            <li>User: {{ user.get_username }} ({{ user.id }})</li>
             <li>
               <form method="post" action="{% url 'logout' %}?next={{ request.path }}">
                 {% csrf_token %}

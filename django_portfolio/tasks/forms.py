@@ -25,11 +25,11 @@ class TaskForm(ModelForm):
             'details': Textarea(attrs={'cols': 40, 'rows': 10}),
             'date': SelectDateWidget(),
             'owner': forms.TextInput(attrs={'readonly': True}),
-            # 'owner': forms.TextInput(attrs={'disabled': True}),
         }
     def __init__(self, user, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['list'].queryset = TaskLists.objects.filter(owner=user)
+        self.fields['list'].queryset = TaskLists.objects.filter(owner__exact=user)
+        self.fields['owner'].initial = user
 
 class SubtaskForm(ModelForm):
     class Meta:

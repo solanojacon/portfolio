@@ -121,8 +121,8 @@ class TaskInline(LoginRequiredMixin):
     template_name = 'tasks_add_edit_task.html'
 
     def form_valid(self, form):
-        if form.instance.owner is None:
-            form.instance.owner = self.request.user
+        # if form.instance.owner is None:
+        #     form.instance.owner = self.request.user
         named_formsets = self.get_named_formsets()
         if not all((x.is_valid() for x in named_formsets.values())):
             return self.render_to_response(self.get_context_data(form=form))

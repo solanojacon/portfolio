@@ -40,7 +40,7 @@ class Tasks(models.Model):
     starred = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
     details = models.CharField(max_length=1000, blank=True, null=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
     class Meta:
         ordering = ['owner', 'list', 'title']
     def get_absolute_url(self):
