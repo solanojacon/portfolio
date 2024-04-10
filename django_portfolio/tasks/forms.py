@@ -27,6 +27,9 @@ class TaskForm(ModelForm):
             'owner': forms.TextInput(attrs={'readonly': True}),
             # 'owner': forms.TextInput(attrs={'disabled': True}),
         }
+    def __init__(self, user, *args, **kwargs):
+        super(TaskForm, self).__init__(*args, **kwargs)
+        self.fields['list'].queryset = TaskLists.objects.filter(owner=user)
 
 class SubtaskForm(ModelForm):
     class Meta:

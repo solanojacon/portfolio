@@ -153,6 +153,11 @@ class TaskInline(LoginRequiredMixin):
 
 class TaskCreate(TaskInline, CreateView):
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super(TaskCreate, self).get_context_data(**kwargs)
         context['named_formsets'] = self.get_named_formsets()
@@ -171,6 +176,11 @@ class TaskCreate(TaskInline, CreateView):
 
 
 class TaskUpdate(TaskInline, UpdateView):
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(TaskUpdate, self).get_context_data(**kwargs)

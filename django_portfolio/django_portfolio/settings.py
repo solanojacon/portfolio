@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+# import sys
+# cwd = os.getcwd()
+# custom_module_location = cwd.rsplit(os.path.sep, 2)[0] + os.path.sep + \
+#                          cwd.rsplit(os.path.sep, 2)[1] + '-data' + os.path.sep + \
+#                          cwd.rsplit(os.path.sep, 2)[2]
+# sys.path.append(custom_module_location)
+import local_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,16 +95,16 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': 'solanobj',
-#         'HOST': 'tasks-project.ctsemo4cifa1.us-east-2.rds.amazonaws.com',
-#         'PORT': '5432'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': local_settings.login['username'],
+        'PASSWORD': local_settings.login['password'],
+        'HOST': 'django-portfolio.ctsemo4cifa1.us-east-2.rds.amazonaws.com',
+        'PORT': '5432'
+    }
+}
 
 
 # Password validation
