@@ -82,6 +82,8 @@ def add_list(request):
 @login_required
 def edit_list(request, pk):
     lists_data = get_object_or_404(TaskLists, pk=pk)
+    if lists_data.owner.id!=request.user.id:
+        return redirect('tasks:lists')
     form = ListForm(instance=lists_data)
     if request.method=='POST':
         form = ListForm(request.POST, instance=lists_data)
@@ -95,7 +97,8 @@ def edit_list(request, pk):
 @login_required
 def delete_list(request, pk):
     lists_data = get_object_or_404(TaskLists, pk=pk)
-    lists_data.delete()
+    if lists_data.owner.id==request.user.id:
+        lists_data.delete()
     return redirect('tasks:lists')
 
 
