@@ -28,8 +28,9 @@ class TaskForm(ModelForm):
         }
     def __init__(self, user, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['list'].queryset = TaskLists.objects.filter(owner__exact=user)
-        self.fields['owner'].initial = user
+        if user!=None:
+            self.fields['list'].queryset = TaskLists.objects.filter(owner__exact=user)
+            self.fields['owner'].initial = user
 
 class SubtaskForm(ModelForm):
     class Meta:

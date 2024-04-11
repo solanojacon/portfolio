@@ -23,5 +23,10 @@ class NoteForm(ModelForm):
     #         self.fields['list'].queryset = NoteLists.objects.filter(owner=user)
     # def __init__(self, user, *args, **kwargs):
     #     super(NoteForm, self).__init__(*args, **kwargs)
-    #     # self.fields['owner'].inicial = user
     #     self.fields['list'].queryset = NoteLists.objects.filter(owner=user)
+    #     self.fields['owner'].inicial = user
+    def __init__(self, user=None, *args, **kwargs):
+        super(NoteForm, self).__init__(*args, **kwargs)
+        if user!=None:
+            self.fields['list'].queryset = NoteLists.objects.filter(owner__exact=user)
+            self.fields['owner'].initial = user
