@@ -28,7 +28,7 @@ def register(request):
 
 @login_required
 def change_password(request):
-    if request.method == 'POST':
+    if request.method=='POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
@@ -52,7 +52,7 @@ def test(request):
 @login_required
 def lists(request):
     superuser = request.user.is_superuser
-    if superuser == True:
+    if superuser==True:
         lists_data = TaskLists.objects.all()
     else:
         lists_data = TaskLists.objects.filter(owner__exact=request.user.id)
@@ -82,7 +82,8 @@ def add_list(request):
 @login_required
 def edit_list(request, pk):
     lists_data = get_object_or_404(TaskLists, pk=pk)
-    if lists_data.owner.id!=request.user.id:
+    superuser = request.user.is_superuser
+    if lists_data.owner.id!=request.user.id and superuser==False:
         return redirect('tasks:lists')
     form = ListForm(instance=lists_data)
     if request.method=='POST':
@@ -97,7 +98,8 @@ def edit_list(request, pk):
 @login_required
 def delete_list(request, pk):
     lists_data = get_object_or_404(TaskLists, pk=pk)
-    if lists_data.owner.id==request.user.id:
+    superuser = request.user.is_superuser
+    if lists_data.owner.id==request.user.id or superuser==True:
         lists_data.delete()
     return redirect('tasks:lists')
 
@@ -106,7 +108,7 @@ class TaskList(LoginRequiredMixin, ListView):
     paginate_by = 10
     def get_queryset(self):
         superuser = self.request.user.is_superuser
-        if superuser == True:
+        if superuser==True:
             return Tasks.objects.all()
         else:
             return Tasks.objects.filter(owner__exact=self.request.user.id)
@@ -200,7 +202,9 @@ class TaskUpdate(TaskInline, UpdateView):
 @login_required
 def delete_task(request, pk):
     tasks_data = get_object_or_404(Tasks, pk=pk)
-    tasks_data.delete()
+    superuser = request.user.is_superuser
+    if tasks_data.owner.id==request.user.id or superuser==True:
+        tasks_data.delete()
     return redirect('tasks:tasks')
 
 

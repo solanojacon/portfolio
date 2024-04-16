@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from .models import NoteLists, Notes
 from .forms import ListForm, NoteForm
 
+
 @login_required
 def test(request):
     template = loader.get_template('notes_test.html')
@@ -18,10 +19,11 @@ def test(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 @login_required
 def lists(request):
     superuser = request.user.is_superuser
-    if superuser == True:
+    if superuser==True:
         lists_data = NoteLists.objects.all()
     else:
         lists_data = NoteLists.objects.filter(owner__exact=request.user.id)
@@ -35,6 +37,7 @@ def lists(request):
     }
     return render(request, 'notes_lists.html', context)
 
+
 @login_required
 def add_list(request):
     form = ListForm(initial={'owner': request.user.id})
@@ -46,10 +49,12 @@ def add_list(request):
     context = {'form': form}
     return render(request, 'notes_add_list.html', context)
 
+
 @login_required
 def edit_list(request, pk):
     lists_data = get_object_or_404(NoteLists, pk=pk)
-    if lists_data.owner.id!=request.user.id:
+    superuser = request.user.is_superuser
+    if lists_data.owner.id!=request.user.id and superuser==False:
         return redirect('notes:lists')
     form = ListForm(instance=lists_data)
     if request.method=='POST':
@@ -60,12 +65,15 @@ def edit_list(request, pk):
     context = {'form': form}
     return render(request, 'notes_edit_list.html', context)
 
+
 @login_required
 def delete_list(request, pk):
     lists_data = get_object_or_404(NoteLists, pk=pk)
-    if lists_data.owner.id==request.user.id:
+    superuser = request.user.is_superuser
+    if lists_data.owner.id==request.user.id or superuser==True:
         lists_data.delete()
     return redirect('notes:lists')
+
 
 # @login_required
 # def notes(request):
@@ -86,15 +94,18 @@ def delete_list(request, pk):
 
 
 class NoteList(LoginRequiredMixin, ListView):
+
     paginate_by = 10
+    template_name = 'notes_notes.html'
+    context_object_name = 'notes_data'
+
     def get_queryset(self):
         superuser = self.request.user.is_superuser
-        if superuser == True:
+        if superuser==True:
             return Notes.objects.all()
         else:
             return Notes.objects.filter(owner__exact=self.request.user.id)
-    template_name = 'notes_notes.html'
-    context_object_name = 'notes_data'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['superuser'] = self.request.user.is_superuser
@@ -117,7 +128,6 @@ class NoteList(LoginRequiredMixin, ListView):
 class NoteCreate(LoginRequiredMixin, CreateView):
 
     model = Notes
-    # fields = ['title', 'description']
     template_name = 'notes_add_note.html'
     form_class = NoteForm
 
@@ -147,15 +157,22 @@ class NoteCreate(LoginRequiredMixin, CreateView):
 class NoteUpdate(LoginRequiredMixin, UpdateView):
 
     model = Notes
-    # fields = ['title', 'description']
     template_name = 'notes_edit_note.html'
     form_class = NoteForm
-    # success_url = redirect('notes:notes')
+
+    # superuser = request.user.is_superuser
+    # if lists_data.owner.id!=request.user.id and superuser==False:
+    #     return redirect('notes:lists')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     print(context['form']['owner'])
+    #     return context
 
     def get_success_url(self):
         return reverse('notes:notes')
@@ -164,5 +181,7 @@ class NoteUpdate(LoginRequiredMixin, UpdateView):
 @login_required
 def delete_note(request, pk):
     notes_data = get_object_or_404(Notes, pk=pk)
-    notes_data.delete()
+    superuser = request.user.is_superuser
+    if notes_data.owner.id==request.user.id or superuser==True:
+        notes_data.delete()
     return redirect('notes:notes')
