@@ -160,19 +160,19 @@ class NoteUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'notes_edit_note.html'
     form_class = NoteForm
 
-    # superuser = request.user.is_superuser
-    # if lists_data.owner.id!=request.user.id and superuser==False:
-    #     return redirect('notes:lists')
+    def get(self, *args, **kwargs):
+        get_return = super(NoteUpdate, self).get(*args, **kwargs)
+        owner_id = self.get_object().owner.id
+        logged_in_user_id = self.request.user.id
+        superuser = self.request.user.is_superuser
+        if owner_id!=logged_in_user_id and superuser==False:
+            return redirect('notes:notes')
+        return get_return
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     print(context['form']['owner'])
-    #     return context
 
     def get_success_url(self):
         return reverse('notes:notes')

@@ -182,6 +182,15 @@ class TaskCreate(TaskInline, CreateView):
 
 class TaskUpdate(TaskInline, UpdateView):
 
+    def get(self, *args, **kwargs):
+        get_return = super(TaskUpdate, self).get(*args, **kwargs)
+        owner_id = self.get_object().owner.id
+        logged_in_user_id = self.request.user.id
+        superuser = self.request.user.is_superuser
+        if owner_id!=logged_in_user_id and superuser==False:
+            return redirect('tasks:tasks')
+        return get_return
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user

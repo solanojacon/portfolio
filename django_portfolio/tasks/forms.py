@@ -29,7 +29,10 @@ class TaskForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
         if user!=None:
-            self.fields['list'].queryset = TaskLists.objects.filter(owner__exact=user)
+            if user.is_superuser:
+                self.fields['list'].queryset = TaskLists.objects.all()
+            else:
+                self.fields['list'].queryset = TaskLists.objects.filter(owner__exact=user)
             self.fields['owner'].initial = user
 
 class SubtaskForm(ModelForm):

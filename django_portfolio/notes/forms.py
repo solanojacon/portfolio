@@ -28,5 +28,8 @@ class NoteForm(ModelForm):
     def __init__(self, user=None, *args, **kwargs):
         super(NoteForm, self).__init__(*args, **kwargs)
         if user!=None:
-            self.fields['list'].queryset = NoteLists.objects.filter(owner__exact=user)
+            if user.is_superuser:
+                self.fields['list'].queryset = NoteLists.objects.all()
+            else:
+                self.fields['list'].queryset = NoteLists.objects.filter(owner__exact=user)
             self.fields['owner'].initial = user
