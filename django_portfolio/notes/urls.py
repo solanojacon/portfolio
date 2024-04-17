@@ -6,9 +6,6 @@ app_name = 'notes'
 
 urlpatterns = [
     path('notes/test/', views.test, name='test'),
-    # path('notes/', views.notes, name='notes'),
-    # path('notes/add/', views.add_note, name='add_note'),
-    # path('notes/edit/<int:pk>', views.edit_note, name='edit_note'),
     path('notes/', NoteList.as_view(), name='notes'),
     path('notes/add/', NoteCreate.as_view(), name='add_note'),
     path('notes/edit/<int:pk>', NoteUpdate.as_view(), name='edit_note'),

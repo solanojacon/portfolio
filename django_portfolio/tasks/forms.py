@@ -14,13 +14,6 @@ class TaskForm(ModelForm):
     class Meta:
         model = Tasks
         fields = '__all__'
-        # fields = ['title']
-        # exclude = ['owner']
-        # visible_fields = ['title']
-        # hidden_fields = ['owner']
-        # labels = {
-        #     'title': 'Task Title',
-        # }
         widgets = {
             'details': Textarea(attrs={'cols': 40, 'rows': 10}),
             'date': SelectDateWidget(),

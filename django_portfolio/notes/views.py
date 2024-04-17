@@ -75,24 +75,6 @@ def delete_list(request, pk):
     return redirect('notes:lists')
 
 
-# @login_required
-# def notes(request):
-#     superuser = request.user.is_superuser
-#     if superuser == True:
-#         notes_data = Notes.objects.all()
-#     else:
-#         notes_data = Notes.objects.filter(owner__exact=request.user.id)
-#     paginator = Paginator(notes_data, 10)
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     context = {
-#         'notes_data': notes_data,
-#         'superuser': superuser,
-#         'page_obj': page_obj,
-#     }
-#     return render(request, 'notes_notes.html', context)
-
-
 class NoteList(LoginRequiredMixin, ListView):
 
     paginate_by = 10
@@ -112,19 +94,6 @@ class NoteList(LoginRequiredMixin, ListView):
         return context
 
 
-# @login_required
-# def add_note(request):
-#     # form = NoteForm(initial={'owner': request.user.id}, user=request.user)
-#     form = NoteForm(initial={'owner': request.user.id})
-#     if request.method=='POST':
-#         form = NoteForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('notes:notes')
-#     context = {'form': form}
-#     return render(request, 'notes_add_note.html', context)
-
-
 class NoteCreate(LoginRequiredMixin, CreateView):
 
     model = Notes
@@ -138,20 +107,6 @@ class NoteCreate(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('notes:notes')
-
-
-# @login_required
-# def edit_note(request, pk):
-#     notes_data = get_object_or_404(Notes, pk=pk)
-#     # form = NoteForm(instance=notes_data, user=request.user)
-#     form = NoteForm(instance=notes_data)
-#     if request.method=='POST':
-#         form = NoteForm(request.POST, instance=notes_data)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('notes:notes')
-#     context = {'form': form}
-#     return render(request, 'notes_edit_note.html', context)
 
 
 class NoteUpdate(LoginRequiredMixin, UpdateView):
@@ -168,6 +123,15 @@ class NoteUpdate(LoginRequiredMixin, UpdateView):
         if owner_id!=logged_in_user_id and superuser==False:
             return redirect('notes:notes')
         return get_return
+
+    def post(self, *args, **kwargs):
+        post_return = super(NoteUpdate, self).post(*args, **kwargs)
+        owner_id = self.get_object().owner.id
+        logged_in_user_id = self.request.user.id
+        superuser = self.request.user.is_superuser
+        if owner_id!=logged_in_user_id and superuser==False:
+            return redirect('notes:notes')
+        return post_return
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
