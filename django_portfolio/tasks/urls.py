@@ -22,4 +22,5 @@ urlpatterns = [
     path('tasks/lists/add/', views.add_list, name='add_list'),
     path('tasks/lists/edit/<int:pk>', views.edit_list, name='edit_list'),
     path('tasks/lists/delete/<int:pk>', views.delete_list, name='delete_list'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Enable the serving of static files during development
+# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Enable the serving of static files during development
+]

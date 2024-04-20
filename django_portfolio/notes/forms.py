@@ -7,6 +7,7 @@ class ListForm(ModelForm):
         model = NoteLists
         fields = '__all__'
         widgets = {
+            'color': forms.TextInput(attrs={'type': 'color'}),
             'owner': forms.TextInput(attrs={'readonly': True}),
         }
 

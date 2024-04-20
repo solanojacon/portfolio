@@ -1,6 +1,9 @@
 <!-- master.html -->
 
 
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,16 +17,11 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 
-  {% load static %}
   <!-- Add additional CSS in static file -->
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-
-  <!-- Colorfield -->
-  <script src="{% static 'colorfield/jscolor/jscolor.js' %}"></script>
-  <script src="{% static 'colorfield/colorfield.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'styles.css' %}" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
   {% block head %}{% endblock %}
 
@@ -35,8 +33,7 @@
     <div class="row">
 
       <div class="col-sm-2">
-        {% load static %}
-        <br><img src="{% static 'images/portfolio.png' %}" alt="My image" width="50" height="50">
+        <br><img src="{% static 'portfolio.png' %}" alt="My image" width="50" height="50">
         <br><h5>Django Portfolio</h5>
         <ul style="margin-top:20px;padding:0;list-style:none">
           {% if user.is_authenticated %}
