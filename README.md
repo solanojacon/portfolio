@@ -4,7 +4,7 @@
 # :brain: Solano Jacon ([LinkedIn](https://www.linkedin.com/in/solanojacon/))
 
 
-## :open_file_folder: Projects
+## Projects
 
 Data Science:
 - :moneybag: [Correlation Between Buyers and Leads](#:moneybag:-correlation-between-buyers-and-leads)
