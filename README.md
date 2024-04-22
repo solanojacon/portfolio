@@ -1,5 +1,6 @@
 # :brain: Solano Jacon ([LinkedIn](https://www.linkedin.com/in/solanojacon/))
 
+<br>
 
 # :file_folder: Portfolio
 
@@ -11,14 +12,9 @@ Data Science:
 
 Web Development:
 - :briefcase: [Tasks & Notes](#briefcase-tasks--notes)
+
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 ## :moneybag: Correlation Between Buyers and Leads
 
 Programming languages, methods and technologies used: **Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
@@ -27,6 +23,7 @@ Contents:
 - [Challenge Information](Correlation_Between_Buyers_and_Leads/README.md)
 - [Notebook with the Solution](Correlation_Between_Buyers_and_Leads/Correlation_Between_Buyers_and_Leads.ipynb)
 
+<br>
 
 ## :movie_camera: Movie Rating Prediction
 
@@ -36,6 +33,7 @@ Contents:
 - [Challenge Information](Movie_Rating_Prediction/README.md)
 - [Notebook with the Solution](Movie_Rating_Prediction/Movie_Rating_Prediction.ipynb)
 
+<br>
 
 ## :car: Registrated Vehicle Forecast
 
@@ -45,6 +43,7 @@ Contents:
 - [Challenge Information](Registrated_Vehicle_Forecast/README.md)
 - [Notebook with the Solution](Registrated_Vehicle_Forecast/Registrated_Vehicle_Forecast.ipynb)
 
+<br>
 
 ## :raising_hand: Customer Service Improvement
 
@@ -54,6 +53,7 @@ Contents:
 - [Challenge Information](Customer_Service_Improvement/README.md)
 - [Notebook with the Solution](Customer_Service_Improvement/Customer_Service_Improvement.ipynb)
 
+<br>
 
 ## :briefcase: Tasks & Notes
 
