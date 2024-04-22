@@ -1,10 +1,7 @@
-# :file_folder: Portfolio
-
-
 # :brain: Solano Jacon ([LinkedIn](https://www.linkedin.com/in/solanojacon/))
 
 
-## Projects
+# :file_folder: Portfolio
 
 Data Science:
 - :moneybag: [Correlation Between Buyers and Leads](#moneybag-correlation-between-buyers-and-leads)
@@ -14,6 +11,16 @@ Data Science:
 
 Web Development:
 - :briefcase: [Tasks & Notes](#briefcase-tasks--notes)
+
+
+
+
+
+
+
+
+
+
 
 
 ## :moneybag: Correlation Between Buyers and Leads
