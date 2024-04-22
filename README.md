@@ -7,13 +7,13 @@
 ## Projects
 
 Data Science:
-- :moneybag: [Correlation Between Buyers and Leads](#:moneybag:-correlation-between-buyers-and-leads)
-- :movie_camera: [Movie Rating Prediction](#:movie_camera:-movie-rating-prediction)
-- :car: [Registrated Vehicle Forecast](#:car:-registrated-vehicle-forecast)
-- :raising_hand: [Customer Service Improvement](#:raising_hand:-customer-service-improvement)
+- :moneybag: [Correlation Between Buyers and Leads](#moneybag-correlation-between-buyers-and-leads)
+- :movie_camera: [Movie Rating Prediction](#movie_camera-movie-rating-prediction)
+- :car: [Registrated Vehicle Forecast](#car-registrated-vehicle-forecast)
+- :raising_hand: [Customer Service Improvement](#raising_hand-customer-service-improvement)
 
 Web Development:
-- :briefcase: [Tasks & Notes](#:briefcase:-tasks-&-notes)
+- :briefcase: [Tasks & Notes](#briefcase-tasks--notes)
 
 
 ## :moneybag: Correlation Between Buyers and Leads
