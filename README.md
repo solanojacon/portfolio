@@ -7,16 +7,16 @@
 ## :open_file_folder: Projects
 
 Data Science:
-- :moneybag: [Correlation Between Buyers and Leads](#correlation-between-buyers-and-leads)
-- :movie_camera: [Movie Rating Prediction](#movie-rating-prediction)
-- :car: [Registrated Vehicle Forecast](#registrated-vehicle-forecast)
-- :raising_hand: [Customer Service Improvement](#customer-service-improvement)
+- :moneybag: [Correlation Between Buyers and Leads](#:moneybag:-correlation-between-buyers-and-leads)
+- :movie_camera: [Movie Rating Prediction](#:movie_camera:-movie-rating-prediction)
+- :car: [Registrated Vehicle Forecast](#:car:-registrated-vehicle-forecast)
+- :raising_hand: [Customer Service Improvement](#:raising_hand:-customer-service-improvement)
 
 Web Development:
-- :briefcase: [Tasks & Notes](#tasks-&-notes)
+- :briefcase: [Tasks & Notes](#:briefcase:-tasks-&-notes)
 
 
-## Correlation Between Buyers and Leads
+## :moneybag: Correlation Between Buyers and Leads
 
 Programming languages, methods and technologies used: **Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
 
@@ -25,7 +25,7 @@ Contents:
 - [Notebook with the Solution](Correlation_Between_Buyers_and_Leads/Correlation_Between_Buyers_and_Leads.ipynb)
 
 
-## Movie Rating Prediction
+## :movie_camera: Movie Rating Prediction
 
 Programming languages, methods and technologies used: **Machine Learning** (Natural Language Processing (NLP)), **Python** (Pandas, Natural Language Toolkit (NLTK), scikit-learn (sklearn), and other libraries)
 
@@ -34,7 +34,7 @@ Contents:
 - [Notebook with the Solution](Movie_Rating_Prediction/Movie_Rating_Prediction.ipynb)
 
 
-## Registrated Vehicle Forecast
+## :car: Registrated Vehicle Forecast
 
 Programming languages, methods and technologies used: **Machine Learning** (Time Series), **Python** (Pandas, Numpy, scikit-learn (sklearn), Statsmodels, Matplotlib and other libraries)
 
@@ -43,7 +43,7 @@ Contents:
 - [Notebook with the Solution](Registrated_Vehicle_Forecast/Registrated_Vehicle_Forecast.ipynb)
 
 
-## Customer Service Improvement
+## :raising_hand: Customer Service Improvement
 
 Programming languages, methods and technologies used: **Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
 
@@ -52,7 +52,7 @@ Contents:
 - [Notebook with the Solution](Customer_Service_Improvement/Customer_Service_Improvement.ipynb)
 
 
-## Tasks & Notes
+## :briefcase: Tasks & Notes
 
 Programming languages, methods and technologies used: **Django** (Python-based web framework), **HTML**, **CSS**, **Bootstrap**, **SQL**, **AWS** (EC2, RDS, Elastic Beanstalk)
 
