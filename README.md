@@ -17,9 +17,8 @@ Web Development:
 
 ## :moneybag: Correlation Between Buyers and Leads
 
-Programming languages, methods and technologies used: **Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
+**Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
 
-Contents:
 - [Challenge Information](Correlation_Between_Buyers_and_Leads/README.md)
 - [Notebook with the Solution](Correlation_Between_Buyers_and_Leads/Correlation_Between_Buyers_and_Leads.ipynb)
 
@@ -27,7 +26,7 @@ Contents:
 
 ## :movie_camera: Movie Rating Prediction
 
-Programming languages, methods and technologies used: **Machine Learning** (Natural Language Processing (NLP)), **Python** (Pandas, Natural Language Toolkit (NLTK), scikit-learn (sklearn), and other libraries)
+**Machine Learning** (Natural Language Processing (NLP)), **Python** (Pandas, Natural Language Toolkit (NLTK), scikit-learn (sklearn), and other libraries)
 
 Contents:
 - [Challenge Information](Movie_Rating_Prediction/README.md)
@@ -37,7 +36,7 @@ Contents:
 
 ## :car: Registrated Vehicle Forecast
 
-Programming languages, methods and technologies used: **Machine Learning** (Time Series), **Python** (Pandas, Numpy, scikit-learn (sklearn), Statsmodels, Matplotlib and other libraries)
+**Machine Learning** (Time Series), **Python** (Pandas, Numpy, scikit-learn (sklearn), Statsmodels, Matplotlib and other libraries)
 
 Contents:
 - [Challenge Information](Registrated_Vehicle_Forecast/README.md)
@@ -47,7 +46,7 @@ Contents:
 
 ## :raising_hand: Customer Service Improvement
 
-Programming languages, methods and technologies used: **Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
+**Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
 
 Contents:
 - [Challenge Information](Customer_Service_Improvement/README.md)
@@ -57,7 +56,7 @@ Contents:
 
 ## :briefcase: Tasks & Notes
 
-Programming languages, methods and technologies used: **Django** (Python-based web framework), **HTML**, **CSS**, **Bootstrap**, **SQL**, **AWS** (EC2, RDS, Elastic Beanstalk)
+**Django** (Python-based web framework), **HTML**, **CSS**, **Bootstrap**, **SQL**, **AWS** (EC2, RDS, Elastic Beanstalk)
 
 Contents:
 - [Application](http://django-portfolio.us-east-2.elasticbeanstalk.com/)
