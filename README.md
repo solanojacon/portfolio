@@ -11,18 +11,14 @@ Data Science:
 
 Web Development:
 - :briefcase: [Tasks & Notes](#briefcase-tasks--notes)
-
-
-
-
-
-
-
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 ## :moneybag: Correlation Between Buyers and Leads
 
 Programming languages, methods and technologies used: **Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
