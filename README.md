@@ -58,5 +58,6 @@ Programming languages, methods and technologies used: **Django** (Python-based w
 
 Contents:
 - <a href="http://django-portfolio.us-east-2.elasticbeanstalk.com/" target="_blank">Application</a>
+<a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
 - [Application](http://django-portfolio.us-east-2.elasticbeanstalk.com/)
 - [Code](django_portfolio)
