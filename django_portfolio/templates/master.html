@@ -32,7 +32,7 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-sm-2">
+      <div class="col-auto text-center">
         <br><img src="{% static 'portfolio.png' %}" alt="My image" width="50" height="50">
         <br><h5>Django Portfolio</h5>
         <ul style="margin-top:20px;padding:0;list-style:none">
@@ -59,7 +59,7 @@
                    onclick="document.location='{% url 'notes:lists' %}'">Note Lists</button></p>
       </div>
 
-      <div class="col-sm-10 ">
+      <div class="col">
         {% block content %}{% endblock %}
       </div>
 
