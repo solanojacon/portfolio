@@ -13,10 +13,10 @@ Data Science:
 - :raising_hand: [Customer Service Improvement](#customer-service-improvement)
 
 Web Development:
-- :briefcase: [Tasks & Notes](#tasks-notes)
+- :briefcase: [Tasks & Notes](#tasks-&-notes)
 
 
-## :moneybag: Correlation Between Buyers and Leads {#correlation-between-buyers-and-leads}
+## Correlation Between Buyers and Leads
 
 Programming languages, methods and technologies used: **Machine Learning** (Supervised Learning, Classification), **Python** (Pandas, scikit-learn (sklearn) and other libraries), **SQL**
 
@@ -25,7 +25,7 @@ Contents:
 - [Notebook with the Solution](Correlation_Between_Buyers_and_Leads/Correlation_Between_Buyers_and_Leads.ipynb)
 
 
-## :movie_camera: Movie Rating Prediction {#movie-rating-prediction}
+## Movie Rating Prediction
 
 Programming languages, methods and technologies used: **Machine Learning** (Natural Language Processing (NLP)), **Python** (Pandas, Natural Language Toolkit (NLTK), scikit-learn (sklearn), and other libraries)
 
@@ -34,7 +34,7 @@ Contents:
 - [Notebook with the Solution](Movie_Rating_Prediction/Movie_Rating_Prediction.ipynb)
 
 
-## :car: Registrated Vehicle Forecast {#registrated-vehicle-forecast}
+## Registrated Vehicle Forecast
 
 Programming languages, methods and technologies used: **Machine Learning** (Time Series), **Python** (Pandas, Numpy, scikit-learn (sklearn), Statsmodels, Matplotlib and other libraries)
 
@@ -43,7 +43,7 @@ Contents:
 - [Notebook with the Solution](Registrated_Vehicle_Forecast/Registrated_Vehicle_Forecast.ipynb)
 
 
-## :raising_hand: Customer Service Improvement {#customer-service-improvement}
+## Customer Service Improvement
 
 Programming languages, methods and technologies used: **Data Analysis** (Charts, Correlations and others), **Python** (Pandas, Matplotlib, Seaborn and other libraries), **SQL**
 
@@ -52,10 +52,11 @@ Contents:
 - [Notebook with the Solution](Customer_Service_Improvement/Customer_Service_Improvement.ipynb)
 
 
-## :briefcase: Tasks & Notes {#tasks-notes}
+## Tasks & Notes
 
 Programming languages, methods and technologies used: **Django** (Python-based web framework), **HTML**, **CSS**, **Bootstrap**, **SQL**, **AWS** (EC2, RDS, Elastic Beanstalk)
 
 Contents:
+- <a href="http://django-portfolio.us-east-2.elasticbeanstalk.com/" target="_blank">Application</a>
 - [Application](http://django-portfolio.us-east-2.elasticbeanstalk.com/)
 - [Code](django_portfolio)
