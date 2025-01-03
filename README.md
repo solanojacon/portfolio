@@ -55,5 +55,4 @@ Web Development:
 
 **Django** (Python-based web framework), **HTML**, **CSS**, **Bootstrap**, **SQL**, **AWS** (EC2, RDS, Elastic Beanstalk)
 
-- [Application](http://django-portfolio.us-east-2.elasticbeanstalk.com/)
 - [Code](django_portfolio)
