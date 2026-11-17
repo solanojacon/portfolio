@@ -62,7 +62,7 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 **Findings:**
 
 - Only **41% of critical and 38% of urgent tickets** meet the expectation, against 81% of normal ones, and the service got worse after 2018.
-- **Priority barely changes the speed:** urgent and normal tickets both take a median of about 7.7 days.
+- **Priority barely changes the speed:** urgent and normal tickets take a median of 7.8 and 7.7 days.
 - **35% of tickets are closed automatically** a week after the company's last answer. The recorded time therefore includes a week of waiting, and the customer never confirms the solution.
 - **Answering is fast** (median of about half an hour or less on tickets the customer opened), **solving is slow.** One ticket type accounts for 71% of the late tickets, and ten customers open 82% of all tickets.
 - The analysis ends with prioritized recommendations: priority queues, a new closing rule, data fixes, and indicators to monitor.
