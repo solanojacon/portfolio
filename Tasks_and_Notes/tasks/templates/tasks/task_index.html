@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0 me-auto">
+      Tasks{% if selected_list %} <small class="text-body-secondary">in</small> {% include "includes/list_badge.html" with list=selected_list %}{% endif %}
+    </h1>
+    {% if selected_list %}<a class="btn btn-outline-secondary" href="{% url 'tasks:index' %}">Show all</a>{% endif %}
+    <a class="btn btn-primary" href="{% url 'tasks:create' %}{% if selected_list %}?list={{ selected_list.pk }}{% endif %}">Add task</a>
+  </div>
+
+  {% if object_list %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th class="d-none d-md-table-cell">List</th>
+            <th>Due</th>
+            <th class="text-center d-none d-md-table-cell">Subtasks</th>
+            <th class="text-center d-none d-md-table-cell">Starred</th>
+            <th class="text-center d-none d-md-table-cell">Done</th>
+            <th><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in object_list %}
+            <tr{% if task.completed %} class="is-done"{% endif %}>
+              <td><a class="item-title" href="{{ task.get_absolute_url }}">{{ task.title }}</a></td>
+              <td class="d-none d-md-table-cell"><a class="text-reset text-decoration-none" href="?list={{ task.task_list.pk }}">{% include "includes/list_badge.html" with list=task.task_list %}</a></td>
+              <td class="text-nowrap">
+                {% if task.due_date %}
+                  <span{% if task.is_overdue %} class="text-danger fw-semibold"{% endif %}>{{ task.due_date|date:"d M Y" }}{% if task.is_overdue %}<span class="d-none d-md-inline" aria-hidden="true"> · overdue</span><span class="visually-hidden"> (overdue)</span>{% endif %}</span>
+                {% endif %}
+              </td>
+              <td class="text-center d-none d-md-table-cell">{% if task.subtask_count %}{{ task.subtask_done }}/{{ task.subtask_count }}{% endif %}</td>
+              <td class="text-center d-none d-md-table-cell">{% if task.starred %}<span class="star" title="Starred">★<span class="visually-hidden">Starred</span></span>{% endif %}</td>
+              <td class="text-center d-none d-md-table-cell">{% if task.completed %}<span title="Done">✓<span class="visually-hidden">Done</span></span>{% endif %}</td>
+              <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-secondary" href="{{ task.get_absolute_url }}">Edit</a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'tasks:delete' task.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "includes/pagination.html" %}
+  {% else %}
+    <p class="text-body-secondary">No tasks yet.</p>
+  {% endif %}
+{% endblock %}

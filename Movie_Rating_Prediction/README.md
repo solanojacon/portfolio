@@ -1,0 +1,41 @@
+# :movie_camera: Movie Rating Prediction
+
+Data science challenge: predict how audiences will rate a movie or TV show before adding it to a streaming catalog.
+
+**Solution:** [notebook](Movie_Rating_Prediction.ipynb)
+
+<br>
+
+## :exclamation: Problem
+
+You were hired by a streaming company to build a model that predicts the rating a title would receive if it were added to the catalog. The goal is to decide whether a title is worth adding.
+
+## :computer: Resources
+
+The dataset `dataset_netflix.xlsx`, a catalog of about 6,200 movies and TV shows with their audience ratings. The data is not included in this repository.
+
+## :rocket: Deliverables
+
+A Jupyter notebook showing the full development of the solution, including:
+
+1. Data processing
+2. Feature engineering
+3. Train/test split
+4. Confusion matrix and precision–recall plot of the model on the test data
+5. Improvement opportunities for the model, given the final result
+
+## :gear: Running the notebook
+
+```bash
+cd Movie_Rating_Prediction
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+jupyter lab
+```
+
+The data is not included in this repository. To run the notebook, point `DATA_PATH` in its setup cell to your copy of the data.
+
+<br>
+
+[← Back to portfolio](../README.md)

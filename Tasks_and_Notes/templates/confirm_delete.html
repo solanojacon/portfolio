@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="h3 mb-3">{{ title }}</h1>
+  <p>Delete <strong>{{ object }}</strong>? This can't be undone.</p>
+  {% if warning %}<div class="alert alert-warning">{{ warning }}</div>{% endif %}
+  <form method="post" class="d-flex gap-2">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-outline-secondary" href="{{ cancel_url }}">Cancel</a>
+  </form>
+{% endblock %}

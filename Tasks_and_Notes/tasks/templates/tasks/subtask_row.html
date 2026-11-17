@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    {% for hidden in subform.hidden_fields %}{{ hidden }}{% endfor %}
+    {{ subform.title }}
+    {% for error in subform.title.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+  </td>
+  <td class="text-center">{{ subform.completed }}</td>
+  <td class="text-center">{{ subform.DELETE }}</td>
+</tr>

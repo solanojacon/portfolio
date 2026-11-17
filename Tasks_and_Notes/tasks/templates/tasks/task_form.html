@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="h3 mb-3">{{ title }}</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <h2 class="h5 mt-4">Subtasks</h2>
+        {{ subtasks.management_form }}
+        {% bootstrap_formset_errors subtasks %}
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th class="text-center" style="width: 5rem">Done</th>
+              <th class="text-center" style="width: 5rem">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="subtask-rows">
+            {% for subform in subtasks %}
+              {% include "tasks/subtask_row.html" %}
+            {% endfor %}
+          </tbody>
+        </table>
+        <template id="subtask-template">
+          {% include "tasks/subtask_row.html" with subform=subtasks.empty_form %}
+        </template>
+        <button type="button" class="btn btn-sm btn-outline-secondary mb-4" id="add-subtask">Add subtask</button>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a class="btn btn-outline-secondary" href="{% url 'tasks:index' %}">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    // Add an empty subtask row, numbered after the existing ones.
+    document.getElementById('add-subtask').addEventListener('click', () => {
+      const total = document.getElementById('id_subtasks-TOTAL_FORMS');
+      const index = Number(total.value);
+      const row = document.getElementById('subtask-template').innerHTML.replaceAll('__prefix__', index);
+      document.getElementById('subtask-rows').insertAdjacentHTML('beforeend', row);
+      total.value = index + 1;
+      document.getElementById(`id_subtasks-${index}-title`).focus();
+    });
+  </script>
+{% endblock %}

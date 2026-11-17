@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Note lists{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0 me-auto">Note lists</h1>
+    <a class="btn btn-primary" href="{% url 'notes:list_create' %}">Add list</a>
+  </div>
+
+  {% if object_list %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>List</th>
+            <th class="text-center">Notes</th>
+            <th><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for note_list in object_list %}
+            <tr>
+              <td><a class="text-reset" href="{% url 'notes:index' %}?list={{ note_list.pk }}">{% include "includes/list_badge.html" with list=note_list %}</a></td>
+              <td class="text-center">{{ note_list.note_count }}</td>
+              <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-secondary" href="{{ note_list.get_absolute_url }}">Edit</a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'notes:list_delete' note_list.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "includes/pagination.html" %}
+  {% else %}
+    <p class="text-body-secondary">No lists yet. Lists group your notes, for example "Ideas" or "Recipes".</p>
+  {% endif %}
+{% endblock %}

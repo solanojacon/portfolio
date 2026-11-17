@@ -1,0 +1,15 @@
+# Packages for this notebook, tested with Python 3.14.
+
+# Data and charts
+numpy==2.5.3
+pandas==3.0.5
+matplotlib==3.11.0
+openpyxl==3.1.5        # read Excel files
+Jinja2==3.1.6          # styled pandas tables
+
+# Models
+scikit-learn==1.9.1
+
+# Notebooks
+jupyterlab==4.6.3
+ipykernel==7.3.0

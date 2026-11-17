@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Task lists{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0 me-auto">Task lists</h1>
+    <a class="btn btn-primary" href="{% url 'tasks:list_create' %}">Add list</a>
+  </div>
+
+  {% if object_list %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>List</th>
+            <th class="text-center">Open tasks</th>
+            <th class="text-center">All tasks</th>
+            <th><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task_list in object_list %}
+            <tr>
+              <td><a class="text-reset" href="{% url 'tasks:index' %}?list={{ task_list.pk }}">{% include "includes/list_badge.html" with list=task_list %}</a></td>
+              <td class="text-center">{{ task_list.open_count }}</td>
+              <td class="text-center">{{ task_list.task_count }}</td>
+              <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-secondary" href="{{ task_list.get_absolute_url }}">Edit</a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'tasks:list_delete' task_list.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "includes/pagination.html" %}
+  {% else %}
+    <p class="text-body-secondary">No lists yet. Lists group your tasks, for example "Work" or "Home".</p>
+  {% endif %}
+{% endblock %}

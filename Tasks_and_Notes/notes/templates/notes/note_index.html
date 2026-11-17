@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0 me-auto">
+      Notes{% if selected_list %} <small class="text-body-secondary">in</small> {% include "includes/list_badge.html" with list=selected_list %}{% endif %}
+    </h1>
+    {% if selected_list %}<a class="btn btn-outline-secondary" href="{% url 'notes:index' %}">Show all</a>{% endif %}
+    <a class="btn btn-primary" href="{% url 'notes:create' %}{% if selected_list %}?list={{ selected_list.pk }}{% endif %}">Add note</a>
+  </div>
+
+  {% if object_list %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th class="d-none d-sm-table-cell">List</th>
+            <th class="d-none d-md-table-cell">Preview</th>
+            <th class="text-center d-none d-md-table-cell">Starred</th>
+            <th><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for note in object_list %}
+            <tr>
+              <td><a href="{{ note.get_absolute_url }}">{{ note.title }}</a></td>
+              <td class="d-none d-sm-table-cell"><a class="text-reset text-decoration-none" href="?list={{ note.note_list.pk }}">{% include "includes/list_badge.html" with list=note.note_list %}</a></td>
+              <td class="text-body-secondary d-none d-md-table-cell">{{ note.content|truncatechars:80 }}</td>
+              <td class="text-center d-none d-md-table-cell">{% if note.starred %}<span class="star" title="Starred">★<span class="visually-hidden">Starred</span></span>{% endif %}</td>
+              <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-secondary" href="{{ note.get_absolute_url }}">Edit</a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'notes:delete' note.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "includes/pagination.html" %}
+  {% else %}
+    <p class="text-body-secondary">No notes yet.</p>
+  {% endif %}
+{% endblock %}
