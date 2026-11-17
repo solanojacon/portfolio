@@ -1,5 +1,7 @@
 # :briefcase: Tasks & Notes
 
+[![tests](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml)
+
 A multi-user web app for managing task lists and notes, built with Django.
 
 Each user registers, logs in and keeps their own **task lists** (tasks with due dates, stars and subtasks) and **note lists**. A user can only ever see and change their own data.

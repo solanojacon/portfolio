@@ -1,0 +1,38 @@
+# Runs the Tasks & Notes test suite on every push and pull request.
+# The data science notebooks are not run here: their data is not in the repository.
+
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  django:
+    name: Tasks & Notes (Django)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Tasks_and_Notes
+    env:
+      DJANGO_DEBUG: 'true'   # local settings: SQLite, no secret key needed
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: Tasks_and_Notes/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check that migrations are up to date
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run tests
+        run: python manage.py test

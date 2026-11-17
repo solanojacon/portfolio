@@ -1,6 +1,7 @@
 # Solano Jacon
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-solanojacon-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/solanojacon/)
+[![tests](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml)
 
 Projects in data analysis, machine learning, time series forecasting and web development: from SQL extraction to models, business recommendations and a deployment-ready Django app.
 
