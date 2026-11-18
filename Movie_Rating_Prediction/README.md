@@ -12,7 +12,7 @@ You were hired by a streaming company to build a model that predicts the rating 
 
 ## :computer: Resources
 
-The dataset `dataset_netflix.xlsx`, a catalog of about 6,200 movies and TV shows with their audience ratings. The data is not included in this repository.
+The dataset `catalog.xlsx`, a catalog of about 6,200 movies and TV shows with their audience ratings. The data is not included in this repository.
 
 ## :rocket: Deliverables
 

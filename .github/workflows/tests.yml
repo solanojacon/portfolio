@@ -1,4 +1,6 @@
-# Runs the Tasks & Notes test suite on every push and pull request.
+# Runs on every push and pull request:
+# - checks that every project's uv.lock matches its pyproject.toml;
+# - runs the Tasks & Notes test suite.
 # The data science notebooks are not run here: their data is not in the repository.
 
 name: tests
@@ -11,6 +13,24 @@ permissions:
   contents: read
 
 jobs:
+  locks:
+    name: Dependency locks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.14'
+
+      - name: Check that each uv.lock is up to date
+        run: |
+          for project in */pyproject.toml; do
+            dir=$(dirname "$project")
+            echo "Checking $dir"
+            (cd "$dir" && uv lock --check)
+          done
+
   django:
     name: Tasks & Notes (Django)
     runs-on: ubuntu-latest

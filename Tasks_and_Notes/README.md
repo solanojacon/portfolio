@@ -108,12 +108,18 @@ gunicorn config.wsgi
 
 ```
 Tasks_and_Notes/
-├── config/       settings, URLs, WSGI/ASGI entry points
-├── core/         registration, password change, ownership mixins, shared form helpers
-├── tasks/        task lists, tasks and subtasks: models, forms, views, templates, tests
-├── notes/        note lists and notes: models, forms, views, templates, tests
-├── templates/    base layout, shared form and delete pages, login and registration
-└── static/       stylesheet and images
+├── config/            settings, URLs, WSGI/ASGI entry points
+├── core/              registration, password change, ownership mixins, shared form helpers
+├── tasks/             task lists, tasks and subtasks: models, forms, views, templates, tests
+├── notes/             note lists and notes: models, forms, views, templates, tests
+├── templates/         base layout, shared form and delete pages, login and registration
+├── static/            stylesheet and images
+├── .ebextensions/     Elastic Beanstalk configuration
+├── manage.py          Django's command-line entry point
+├── pyproject.toml     dependencies
+├── uv.lock            exact versions of all dependencies
+├── requirements.txt   generated from uv.lock, for deployment with pip
+└── .env.example       template for the local settings file
 ```
 
 <br>
