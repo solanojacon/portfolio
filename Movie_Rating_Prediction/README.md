@@ -26,12 +26,12 @@ A Jupyter notebook showing the full development of the solution, including:
 
 ## :gear: Running the notebook
 
+The dependencies are managed with [uv](https://docs.astral.sh/uv/): `pyproject.toml` lists the packages and `uv.lock` pins the exact versions the notebook was run with (Python 3.14). uv installs Python 3.14 if it is missing.
+
 ```bash
 cd Movie_Rating_Prediction
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-jupyter lab
+uv sync                            # create .venv with the locked versions
+uv run jupyter lab
 ```
 
 The data is not included in this repository. To run the notebook, point `DATA_PATH` in its setup cell to your copy of the data.

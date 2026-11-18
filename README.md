@@ -109,4 +109,4 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 The datasets used in the data science projects are not included in this repository. Every notebook is fully executed, so all code, outputs, metrics, and charts can be read directly on GitHub. Tasks & Notes needs no external data and runs locally with SQLite.
 
-Each data science project has its own `requirements.txt`, with the packages its notebook was run with (Python 3.14), and its README explains how to run it.
+Each project manages its dependencies with [uv](https://docs.astral.sh/uv/): a `pyproject.toml` and a `uv.lock` that pins the exact versions it was run with (Python 3.14). Each README explains how to run it.

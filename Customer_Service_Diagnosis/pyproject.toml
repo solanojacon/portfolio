@@ -1,0 +1,19 @@
+[project]
+name = "customer-service-diagnosis"
+version = "1.0.0"
+description = "Why customers are dissatisfied with a ticket-based support service, and what to change."
+requires-python = ">=3.14"
+dependencies = [
+    # Data and charts
+    "numpy==2.5.3",
+    "pandas==3.0.5",
+    "matplotlib==3.11.0",
+    "Jinja2==3.1.6",         # styled pandas tables
+]
+
+[dependency-groups]
+# Installed by default with `uv sync`: the tools to open and run the notebook.
+dev = [
+    "jupyterlab==4.6.3",
+    "ipykernel==7.3.0",
+]

@@ -44,7 +44,7 @@ Each user registers, logs in and keeps their own **task lists** (tasks with due 
 
 ## :hammer_and_wrench: Stack
 
-- **Backend:** Python 3.10+, Django 5.2 LTS, with class-based views and shared ownership mixins.
+- **Backend:** Python 3.11+, Django 5.2 LTS, with class-based views and shared ownership mixins.
 - **Frontend:** server-rendered templates with Bootstrap 5 (django-bootstrap5), and a few lines of plain JavaScript to add subtask rows.
 - **Database:** SQLite locally, PostgreSQL in production (psycopg 3), configured through `DATABASE_URL`.
 - **Serving:** WhiteNoise for static files and Gunicorn as the application server, ready for AWS Elastic Beanstalk.
@@ -53,15 +53,15 @@ Each user registers, logs in and keeps their own **task lists** (tasks with due 
 
 ## :rocket: Running locally
 
+The dependencies are managed with [uv](https://docs.astral.sh/uv/): `pyproject.toml` lists the packages and `uv.lock` pins the exact versions.
+
 ```bash
 cd Tasks_and_Notes
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env               # local settings: debug on, SQLite
-python manage.py migrate
-python manage.py createsuperuser   # optional, for the admin
-python manage.py runserver
+uv sync                                    # create .venv with the locked versions
+cp .env.example .env                       # local settings: debug on, SQLite
+uv run python manage.py migrate
+uv run python manage.py createsuperuser    # optional, for the admin
+uv run python manage.py runserver
 ```
 
 Then open http://127.0.0.1:8000 and register a user.
@@ -69,14 +69,20 @@ Then open http://127.0.0.1:8000 and register a user.
 **Tests:**
 
 ```bash
-python manage.py test
+uv run python manage.py test
 ```
 
 <br>
 
 ## :cloud: Deploying
 
-The app runs on any host that provides Python and environment variables. Set:
+The app runs on any host that provides Python and environment variables. `requirements.txt` is generated from `uv.lock` for hosts that install with pip, such as Elastic Beanstalk. After changing a dependency, regenerate it (the CI checks that it is up to date):
+
+```bash
+uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+Set these environment variables:
 
 | Variable | Value |
 |---|---|

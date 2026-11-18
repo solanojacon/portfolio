@@ -1,0 +1,23 @@
+[project]
+name = "vehicle-registration-forecast"
+version = "1.0.0"
+description = "Forecast monthly new-vehicle registrations in Brazil 1 to 6 months ahead."
+requires-python = ">=3.14"
+dependencies = [
+    # Data and charts
+    "numpy==2.5.3",
+    "pandas==3.0.5",
+    "matplotlib==3.11.0",
+    "openpyxl==3.1.5",       # read Excel files
+    "Jinja2==3.1.6",         # styled pandas tables
+    # Models
+    "scikit-learn==1.9.1",
+    "statsmodels==0.15.0",
+]
+
+[dependency-groups]
+# Installed by default with `uv sync`: the tools to open and run the notebook.
+dev = [
+    "jupyterlab==4.6.3",
+    "ipykernel==7.3.0",
+]

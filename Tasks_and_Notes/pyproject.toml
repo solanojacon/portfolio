@@ -1,0 +1,14 @@
+[project]
+name = "tasks-and-notes"
+version = "1.0.0"
+description = "A multi-user web app for managing task lists and notes, built with Django."
+requires-python = ">=3.11"
+dependencies = [
+    "Django==5.2.19",
+    "django-bootstrap5==26.4",
+    "dj-database-url==3.1.2",
+    "gunicorn==27.0.1",
+    "psycopg[binary]==3.3.9",
+    "python-dotenv==1.2.4",
+    "whitenoise==6.12.0",
+]

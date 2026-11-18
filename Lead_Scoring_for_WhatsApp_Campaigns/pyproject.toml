@@ -1,0 +1,22 @@
+[project]
+name = "lead-scoring-for-whatsapp-campaigns"
+version = "1.0.0"
+description = "Rank leads by their chance of buying, so that WhatsApp messages go to the right people."
+requires-python = ">=3.14"
+dependencies = [
+    # Data and charts
+    "numpy==2.5.3",
+    "pandas==3.0.5",
+    "matplotlib==3.11.0",
+    "Jinja2==3.1.6",         # styled pandas tables
+    # Models
+    "scikit-learn==1.9.1",
+    "joblib==1.6.0",
+]
+
+[dependency-groups]
+# Installed by default with `uv sync`: the tools to open and run the notebook.
+dev = [
+    "jupyterlab==4.6.3",
+    "ipykernel==7.3.0",
+]

@@ -1,0 +1,22 @@
+[project]
+name = "movie-rating-prediction"
+version = "1.0.0"
+description = "Predict whether audiences will rate a movie or TV show well before adding it to a streaming catalog."
+requires-python = ">=3.14"
+dependencies = [
+    # Data and charts
+    "numpy==2.5.3",
+    "pandas==3.0.5",
+    "matplotlib==3.11.0",
+    "openpyxl==3.1.5",       # read Excel files
+    "Jinja2==3.1.6",         # styled pandas tables
+    # Models
+    "scikit-learn==1.9.1",
+]
+
+[dependency-groups]
+# Installed by default with `uv sync`: the tools to open and run the notebook.
+dev = [
+    "jupyterlab==4.6.3",
+    "ipykernel==7.3.0",
+]
