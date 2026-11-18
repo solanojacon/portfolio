@@ -24,11 +24,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :moneybag: Lead Scoring for WhatsApp Campaigns
 
-**Problem:** A custom hair-care e-commerce company was spending heavily on WhatsApp messages sent to every lead who filled out its product questionnaire.
+**Problem:** find which leads of a custom hair-care e-commerce company are most likely to buy, so that WhatsApp messages go to the right people.
 
-**Approach:** Extracted 428k leads from PostgreSQL and used only information available when a form is submitted, including each customer's earlier forms. Trained on January–April 2022 and tested on May–June to mirror real use. Compared a random baseline, logistic regression and gradient boosting with time-series cross-validation, and evaluated the ranking with ROC AUC, cumulative gains and lift.
-
-**Result:** Only 12.7% of leads buy. Age, returning visits, device and acquisition channel separate buyers from non-buyers most clearly. The gradient boosting model ranks leads with a **ROC AUC of 0.67**. The **top 10% of leads convert at 29%**, about twice the average, and messaging the **top half reaches 71% of buyers** at half the cost. A cost analysis shows when cutting messages pays off.
+- 428k leads extracted from PostgreSQL, using only what is known when a form is submitted. Trained on January–April 2022 and tested on May–June.
+- A gradient boosting model ranks leads with a **ROC AUC of 0.67**: the **top 10% convert at 29%**, about twice the average.
+- Messaging the **top half reaches 71% of buyers** at half the cost.
 
 ![Cumulative gains on the test period](Lead_Scoring_for_WhatsApp_Campaigns/images/cumulative_gains.png)
 
@@ -40,11 +40,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :bank: Bank Marketing
 
-**Problem:** A Portuguese bank sells term deposits by phone, and most of the clients it calls say no. The goal is to rank clients by their chance of subscribing before they are called.
+**Problem:** rank bank clients by their chance of subscribing to a term deposit, before they are called.
 
-**Approach:** Rebuilt the date of each of the 45,211 calls (2008–2010), which the public dataset gives only as month and day, and found that in mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Used only information available before the call, leaving out the call duration and the calendar columns, which mostly mark the period. Compared a baseline, logistic regression and gradient boosting, chose the model on the second half of 2009 and tested it on 2010.
-
-**Result:** A logistic regression ranks the 2010 clients with a **ROC AUC of 0.69**; a random train/test split would have reported 0.80, mostly by mixing the two periods. Calling the **top 30% of clients reaches 44% of the subscribers, and 75% of the clients called subscribe** (52% at random). A success in the previous campaign is by far the strongest signal; repeated calls and loans lower the chances.
+- In mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Validated by time, the model reaches a **ROC AUC of 0.69**; a random split would have reported 0.80.
+- Calling the **top 30% reaches 44% of subscribers**, and **75% of the calls convert** (52% at random).
+- A success in the previous campaign is by far the strongest signal; repeated calls and loans lower the chances.
 
 ![Calls per month and share of clients who subscribed](Bank_Marketing/images/campaign_over_time.png)
 
@@ -56,11 +56,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :car: Vehicle Registration Forecast
 
-**Problem:** Forecast monthly new-vehicle registrations in Brazil 1 to 6 months ahead, overall and by segment (passenger cars, light commercials, trucks, buses).
+**Problem:** forecast monthly new-vehicle registrations in Brazil 1 to 6 months ahead, overall and by segment.
 
-**Approach:** Modeled 19 years of ANFAVEA data (2002–2021) as registrations per working day, with Brazilian holidays in the calendar. Industry and retail indicators from IBGE were used only as they would have been published at forecast time. Compared naive baselines, exponential smoothing (ETS), SARIMA and Ridge regression with a rolling-origin backtest that refits every model each month. The model was chosen on forecasts for October 2012 to March 2018 and tested on April 2018 to March 2021.
-
-**Result:** ETS was the most accurate. Outside the 2020 pandemic shock, it misses by **4.8% one month ahead and 11.7% six months ahead**. On average that is **40% less error than repeating the last month**, and about 15% less than repeating the same month last year. Once their publication delay was respected, the IBGE indicators improved the regression model only slightly: they did not beat ETS when the model was chosen and were only marginally ahead on the test period. The model beats the naive forecasts for every segment; buses are the hardest to predict.
+- 19 years of ANFAVEA data, modeled per working day, in a rolling backtest that refits every model each month.
+- Exponential smoothing (ETS) misses by **4.8% one month ahead and 11.7% six months ahead** (outside the 2020 shock): **40% less error than repeating the last month**.
+- IBGE indicators, used only as they would have been published, improved the regression model only slightly and did not beat ETS when the model was chosen. Buses are the hardest segment.
 
 ![Forecast error by horizon](Vehicle_Registration_Forecast/images/error_by_horizon.png)
 
@@ -72,17 +72,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :raising_hand: Customer Service Diagnosis
 
-**Problem:** A B2B software company faced widespread customer dissatisfaction with its ticket-based support. Customers expect resolution within 3, 7, and 21 days for critical, urgent, and normal tickets.
+**Problem:** find out why the customers of a B2B software company are dissatisfied with its ticket-based support, and what to change.
 
-**Approach:** Extracted six tables from SQL Server and analyzed the 13,172 tickets opened in 2018–2020, including those still open. First checked which fields were reliable, then measured the share of tickets closed within the customer's expectation and the time to first answer. Traced who closed each ticket and when, and broke the delays down by type, system and customer.
-
-**Findings:**
-
-- Only **41% of critical and 38% of urgent tickets** meet the expectation, against 81% of normal ones, and the service got worse after 2018.
-- **Priority barely changes the speed:** urgent and normal tickets take a median of 7.8 and 7.7 days.
-- **35% of tickets are closed automatically** a week after the company's last answer. The recorded time therefore includes a week of waiting, and the customer never confirms the solution.
-- **Answering is fast** (median of about half an hour or less on tickets the customer opened), **solving is slow.** One ticket type accounts for 71% of the late tickets, and ten customers open 82% of all tickets.
-- The analysis ends with prioritized recommendations: priority queues, a new closing rule, data fixes, and indicators to monitor.
+- Only **41% of critical and 38% of urgent tickets** are closed within the customer's expectation (3 and 7 days), against 81% of normal ones. Priority barely changes the speed.
+- **35% of tickets are closed automatically** a week after the last answer, so the recorded time includes a week of waiting.
+- **Answering is fast, solving is slow.** One ticket type accounts for 71% of the late tickets, and ten customers open 82% of all tickets. The analysis ends with prioritized recommendations.
 
 ![Tickets closed over time, by priority](Customer_Service_Diagnosis/images/tickets_closed_by_priority.png)
 
@@ -94,11 +88,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :movie_camera: Movie Rating Prediction
 
-**Problem:** A streaming company wants to know, before adding a movie or TV show to its catalog, whether audiences are likely to rate it well.
+**Problem:** predict, before adding a movie or TV show to a streaming catalog, whether audiences will rate it well.
 
-**Approach:** Cleaned a catalog of 6,234 titles. Ratings of 0 turned out to be missing values, and ratings had been matched by title, so different works with the same name shared one rating. Defined "highly rated" as 75 or more out of 100. Trained on titles added up to 2018 and tested on those added from 2019. Compared a baseline, logistic regression and gradient boosting with time-series cross-validation, chose the decision threshold on out-of-fold predictions, and evaluated the model with a confusion matrix and a precision–recall curve.
-
-**Result:** A logistic regression on type, duration, release year and genre ranks titles with a **ROC AUC of 0.77**. **Of the titles it recommends, 53% are highly rated** (33% at random), and its **top 10% shortlist is 65% highly rated**. TV shows, longer movies, documentaries and stand-up are rated higher; kids' TV, reality TV and horror lower. Cast, director and synopsis added nothing, because each name appears in too few titles. The number of seasons was left out because it is recorded after the fact: shows that do well get renewed.
+- Ratings of 0 turned out to be missing, and titles with the same name shared one rating; both cases were removed before modeling.
+- A logistic regression on type, duration, release year and genre reaches a **ROC AUC of 0.77**; its **top 10% shortlist is 65% highly rated** (33% at random).
+- TV shows, documentaries and stand-up are rated higher. Cast and director added nothing, because each name appears in too few titles.
 
 ![Precision–recall curve on the test titles](Movie_Rating_Prediction/images/precision_recall.png)
 
@@ -110,9 +104,11 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 ## :briefcase: Tasks & Notes
 
-**What it is:** A multi-user web app for managing task lists (with subtasks) and notes. It has user registration and authentication, and each user can only see and change their own data.
+**What it is:** a multi-user Django app for task lists (with subtasks) and notes, where each user can only see and change their own data.
 
-**How it was built:** Django 5.2 with class-based views, server-rendered templates and Bootstrap 5. Ownership rules live in shared mixins, so the server always sets the owner and objects of other users return 404. Settings come from environment variables: SQLite locally, PostgreSQL in production. The app was deployed on AWS Elastic Beanstalk with RDS and is ready to deploy again. A test suite covers access control, task and subtask editing, and authentication.
+- Ownership rules live in shared mixins: the server always sets the owner, and other users' objects return 404.
+- SQLite locally, PostgreSQL in production; deployed on AWS Elastic Beanstalk with RDS and ready to deploy again.
+- A test suite, run on every push, covers access control, editing and authentication.
 
 ![Tasks & Notes](Tasks_and_Notes/images/tasks.png)
 
