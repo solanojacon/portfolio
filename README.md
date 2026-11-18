@@ -14,6 +14,7 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 | Project | Type | Key result |
 | --- | --- | --- |
 | [:moneybag: Lead Scoring for WhatsApp Campaigns](#moneybag-lead-scoring-for-whatsapp-campaigns) | Classification | Messaging half of the leads reaches **71% of buyers**; top 10% convert at **2x the average** |
+| [:bank: Bank Marketing](#bank-bank-marketing) | Classification | Calling the top 30% of clients reaches **44% of subscribers**, with **75% of calls converting** (52% at random) |
 | [:car: Vehicle Registration Forecast](#car-vehicle-registration-forecast) | Time series | **4.8% error one month ahead**, 40% less than the naive forecast |
 | [:raising_hand: Customer Service Diagnosis](#raising_hand-customer-service-diagnosis) | Data analysis | Only **38% of urgent tickets** meet the customer's expectation; found why and what to change |
 | [:movie_camera: Movie Rating Prediction](#movie_camera-movie-rating-prediction) | Classification | Top 10% of titles by score are **65% highly rated**, vs 33% at random |
@@ -34,6 +35,22 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 `Python` `SQL` `PostgreSQL` `scikit-learn` `Gradient Boosting`
 
 [Notebook](Lead_Scoring_for_WhatsApp_Campaigns/Lead_Scoring_for_WhatsApp_Campaigns.ipynb) · [Challenge description](Lead_Scoring_for_WhatsApp_Campaigns/README.md)
+
+<br>
+
+## :bank: Bank Marketing
+
+**Problem:** A Portuguese bank sells term deposits by phone, and most of the clients it calls say no. The goal is to rank clients by their chance of subscribing before they are called.
+
+**Approach:** Rebuilt the date of each of the 45,211 calls (2008–2010), which the public dataset gives only as month and day, and found that in mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Used only information available before the call, leaving out the call duration and the calendar columns, which mostly mark the period. Compared a baseline, logistic regression and gradient boosting, chose the model on the second half of 2009 and tested it on 2010.
+
+**Result:** A logistic regression ranks the 2010 clients with a **ROC AUC of 0.69**; a random train/test split would have reported 0.80, mostly by mixing the two periods. Calling the **top 30% of clients reaches 44% of the subscribers, and 75% of the clients called subscribe** (52% at random). A success in the previous campaign is by far the strongest signal; repeated calls and loans lower the chances.
+
+![Calls per month and share of clients who subscribed](Bank_Marketing/images/campaign_over_time.png)
+
+`Python` `scikit-learn` `Logistic Regression` `Classification`
+
+[Notebook](Bank_Marketing/Bank_Marketing.ipynb) · [Challenge description](Bank_Marketing/README.md)
 
 <br>
 
