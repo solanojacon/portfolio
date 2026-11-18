@@ -41,7 +41,7 @@ uv sync                            # create .venv with the locked versions
 uv run jupyter lab
 ```
 
-The data is not included in this repository. Download `bank-full.csv` from one of the links above and point `DATA_PATH` in the notebook's setup cell to it.
+The data is not included in this repository. Download `bank-full.csv` from one of the links above and save it as `portfolio-data/Bank_Marketing/data/bank-full.csv`, in a `portfolio-data` folder next to this repository. The trained model is saved to `portfolio-data/Bank_Marketing/models/`. To use other locations, change `DATA_PATH` and `MODEL_PATH` in the notebook's setup cell.
 
 <br>
 

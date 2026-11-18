@@ -50,7 +50,7 @@ uv sync                            # create .venv with the locked versions
 uv run jupyter lab
 ```
 
-The data is not included in this repository. To run the notebook, point `DATA_PATH` in its setup cell to your copy of the data.
+The data is not included in this repository. The notebook expects it in `portfolio-data/Lead_Scoring_for_WhatsApp_Campaigns/data/data.csv`, in a `portfolio-data` folder next to this repository, and saves the trained model to `portfolio-data/Lead_Scoring_for_WhatsApp_Campaigns/models/`. To use other locations, change `DATA_PATH` and `MODEL_PATH` in the notebook's setup cell.
 
 <br>
 

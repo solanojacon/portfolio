@@ -34,7 +34,7 @@ uv sync                            # create .venv with the locked versions
 uv run jupyter lab
 ```
 
-The data is not included in this repository. To run the notebook, point `DATA_PATH` in its setup cell to your copy of the data.
+The data is not included in this repository. The notebook expects it in `portfolio-data/Movie_Rating_Prediction/data/catalog.xlsx`, in a `portfolio-data` folder next to this repository. To use another location, change `DATA_PATH` in the notebook's setup cell.
 
 <br>
 

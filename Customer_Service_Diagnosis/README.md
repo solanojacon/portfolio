@@ -45,7 +45,7 @@ uv sync                            # create .venv with the locked versions
 uv run jupyter lab
 ```
 
-The data is not included in this repository. To run the notebook, point `DATA_DIR` in its setup cell to your copy of the data.
+The data is not included in this repository. The notebook expects it in `portfolio-data/Customer_Service_Diagnosis/data/`, in a `portfolio-data` folder next to this repository. To use another location, change `DATA_DIR` in the notebook's setup cell.
 
 <br>
 
