@@ -126,6 +126,6 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 The datasets used in the data science projects are not included in this repository. Every notebook is fully executed, so all code, outputs, metrics, and charts can be read directly on GitHub. Tasks & Notes needs no external data and runs locally with SQLite.
 
-The notebooks expect the data in a `portfolio-data` folder next to this repository, with one folder per project: for example, `portfolio-data/Bank_Marketing/data/bank-full.csv`. Saved models are written to the project's folder there. To use another location, change the paths in the notebook's setup cell.
+The notebooks expect the data in a `portfolio-data` folder next to this repository, with one folder per project: for example, `portfolio-data/Bank_Marketing/data/bank-full.csv`. Saved models are written to a `models` folder inside the project's folder there. To use another location, change the paths in the notebook's setup cell.
 
 Each project manages its dependencies with [uv](https://docs.astral.sh/uv/): a `pyproject.toml` and a `uv.lock` that pins the exact versions it was run with (Python 3.14). Each README explains how to run it.
