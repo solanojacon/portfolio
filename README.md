@@ -26,7 +26,7 @@ Projects in machine learning, MLOps, time series forecasting, data analysis and 
 
 **Problem:** rank bank clients by their chance of subscribing to a term deposit, before they are called.
 
-- In mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Validated by time, the model reaches a **ROC AUC of 0.69**; a random split would have reported 0.80.
+- In mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Validated by time, as it would run in production, the model reaches a **ROC AUC of 0.69**.
 - Calling the **top 30% reaches 44% of subscribers**, and **75% of the calls convert** (52% at random).
 - A success in the previous campaign is by far the strongest signal; repeated calls and loans lower the chances.
 - **MLOps:** the model runs as a tested monthly batch job with monitoring, drift alerts, recalibration and champion/challenger retraining. A replay of 2010 runs in CI on every push.
