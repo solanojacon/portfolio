@@ -3,9 +3,9 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-solanojacon-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/solanojacon/)
 [![tests](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/solanojacon/portfolio/actions/workflows/tests.yml)
 
-Projects in data analysis, machine learning, time series forecasting and web development: from SQL extraction to models, business recommendations and a deployment-ready Django app.
+Projects in machine learning, MLOps, time series forecasting, data analysis and web development: from SQL extraction to models, a tested monthly pipeline that monitors and retrains a model, business recommendations and a deployment-ready Django app.
 
-**Stack:** Python (pandas, NumPy, scikit-learn, statsmodels, Matplotlib) · SQL (PostgreSQL, SQL Server) · Django · AWS (EC2, RDS, Elastic Beanstalk)
+**Stack:** Python (pandas, NumPy, scikit-learn, statsmodels, Matplotlib) · SQL (PostgreSQL, SQL Server) · pytest · GitHub Actions · uv · Django
 
 <br>
 
@@ -13,28 +13,12 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 
 | Project | Type | Key result |
 | --- | --- | --- |
+| [:bank: Bank Marketing](#bank-bank-marketing) | Classification · MLOps | Calling the top 30% of clients reaches **44% of subscribers**, with **75% of calls converting** (52% at random) |
 | [:moneybag: Lead Scoring for WhatsApp Campaigns](#moneybag-lead-scoring-for-whatsapp-campaigns) | Classification | Messaging half of the leads reaches **71% of buyers**; top 10% convert at **2x the average** |
-| [:bank: Bank Marketing](#bank-bank-marketing) | Classification | Calling the top 30% of clients reaches **44% of subscribers**, with **75% of calls converting** (52% at random) |
 | [:car: Vehicle Registration Forecast](#car-vehicle-registration-forecast) | Time series | **4.8% error one month ahead**, 40% less than the naive forecast |
 | [:raising_hand: Customer Service Diagnosis](#raising_hand-customer-service-diagnosis) | Data analysis | Only **38% of urgent tickets** meet the customer's expectation; found why and what to change |
 | [:movie_camera: Movie Rating Prediction](#movie_camera-movie-rating-prediction) | Classification | Top 10% of titles by score are **65% highly rated**, vs 33% at random |
 | [:briefcase: Tasks & Notes](#briefcase-tasks--notes) | Web development | Multi-user Django app with per-user data isolation, covered by tests |
-
-<br>
-
-## :moneybag: Lead Scoring for WhatsApp Campaigns
-
-**Problem:** find which leads of a custom hair-care e-commerce company are most likely to buy, so that WhatsApp messages go to the right people.
-
-- 428k leads extracted from PostgreSQL, using only what is known when a form is submitted. Trained on January–April 2022 and tested on May–June.
-- A gradient boosting model ranks leads with a **ROC AUC of 0.67**: the **top 10% convert at 29%**, about twice the average.
-- Messaging the **top half reaches 71% of buyers** at half the cost.
-
-![Cumulative gains on the test period](Lead_Scoring_for_WhatsApp_Campaigns/images/cumulative_gains.png)
-
-`Python` `SQL` `PostgreSQL` `scikit-learn` `Gradient Boosting`
-
-[Notebook](Lead_Scoring_for_WhatsApp_Campaigns/Lead_Scoring_for_WhatsApp_Campaigns.ipynb) · [Challenge description](Lead_Scoring_for_WhatsApp_Campaigns/README.md)
 
 <br>
 
@@ -52,6 +36,22 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 `Python` `scikit-learn` `Logistic Regression` `Classification` `MLOps` `pytest` `GitHub Actions`
 
 [Notebook](Bank_Marketing/Bank_Marketing.ipynb) · [Production pipeline](Bank_Marketing/README.md#factory-production-pipeline) · [Challenge description](Bank_Marketing/README.md)
+
+<br>
+
+## :moneybag: Lead Scoring for WhatsApp Campaigns
+
+**Problem:** find which leads of a custom hair-care e-commerce company are most likely to buy, so that WhatsApp messages go to the right people.
+
+- 428k leads extracted from PostgreSQL, using only what is known when a form is submitted. Trained on January–April 2022 and tested on May–June.
+- A gradient boosting model ranks leads with a **ROC AUC of 0.67**: the **top 10% convert at 29%**, about twice the average.
+- Messaging the **top half reaches 71% of buyers** at half the cost.
+
+![Cumulative gains on the test period](Lead_Scoring_for_WhatsApp_Campaigns/images/cumulative_gains.png)
+
+`Python` `SQL` `PostgreSQL` `scikit-learn` `Gradient Boosting`
+
+[Notebook](Lead_Scoring_for_WhatsApp_Campaigns/Lead_Scoring_for_WhatsApp_Campaigns.ipynb) · [Challenge description](Lead_Scoring_for_WhatsApp_Campaigns/README.md)
 
 <br>
 
@@ -108,12 +108,12 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 **What it is:** a multi-user Django app for task lists (with subtasks) and notes, where each user can only see and change their own data.
 
 - Ownership rules live in shared mixins: the server always sets the owner, and other users' objects return 404.
-- SQLite locally, PostgreSQL in production; deployed on AWS Elastic Beanstalk with RDS and ready to deploy again.
+- SQLite locally, PostgreSQL in production; ready to deploy on AWS Elastic Beanstalk.
 - A test suite, run on every push, covers access control, editing and authentication.
 
 ![Tasks & Notes](Tasks_and_Notes/images/tasks.png)
 
-`Python` `Django` `PostgreSQL` `Bootstrap` `HTML` `CSS` `AWS`
+`Python` `Django` `PostgreSQL` `Bootstrap` `HTML` `CSS`
 
 [Code and setup](Tasks_and_Notes)
 
