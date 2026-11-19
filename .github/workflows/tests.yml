@@ -1,6 +1,7 @@
 # Runs on every push and pull request:
 # - checks that every project's uv.lock matches its pyproject.toml;
-# - runs the Tasks & Notes test suite.
+# - runs the Tasks & Notes test suite;
+# - tests the Bank Marketing pipeline and replays it on the public dataset, downloaded from UCI.
 # The data science notebooks are not run here: their data is not in the repository.
 
 name: tests
@@ -62,3 +63,40 @@ jobs:
 
       - name: Run tests
         run: uv run python manage.py test
+
+  bank-marketing:
+    name: Bank Marketing (pipeline)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Bank_Marketing
+    env:
+      UV_NO_SYNC: '1'   # keep the environment installed below: `uv run` would add the notebook tools
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.14'
+          enable-cache: true
+          cache-dependency-glob: Bank_Marketing/uv.lock
+
+      - name: Install dependencies
+        run: uv sync --locked --no-dev --group test
+
+      - name: Lint
+        run: uv run ruff check
+
+      - name: Run tests
+        run: uv run pytest
+
+      # Same layout as locally: portfolio-data/Bank_Marketing/data/, next to the repository.
+      - name: Download the dataset from UCI
+        run: |
+          mkdir -p ../../portfolio-data/Bank_Marketing/data
+          curl -sSfL -o "$RUNNER_TEMP/bank_marketing.zip" https://archive.ics.uci.edu/static/public/222/bank+marketing.zip
+          unzip -p "$RUNNER_TEMP/bank_marketing.zip" bank.zip > "$RUNNER_TEMP/bank.zip"
+          unzip -p "$RUNNER_TEMP/bank.zip" bank-full.csv > ../../portfolio-data/Bank_Marketing/data/bank-full.csv
+
+      - name: Replay production on 2010
+        run: uv run bank-marketing simulate

@@ -14,9 +14,36 @@ dependencies = [
     "joblib==1.6.0",
 ]
 
+[project.scripts]
+bank-marketing = "bank_marketing.cli:main"
+
 [dependency-groups]
 # Installed by default with `uv sync`: the tools to open and run the notebook.
 dev = [
     "jupyterlab==4.6.3",
     "ipykernel==7.3.0",
 ]
+# The production pipeline (`uv sync --group pipeline`): file access that works on a local disk and on cloud storage.
+pipeline = [
+    "fsspec==2026.9.0",
+]
+# Tests and lint (`uv sync --group test`).
+test = [
+    { include-group = "pipeline" },
+    "pytest==9.2.0",
+    "ruff==0.17.5",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
+include = ["src/**/*.py", "tests/**/*.py"]   # the notebook keeps its own style
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

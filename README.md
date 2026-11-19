@@ -45,12 +45,13 @@ Projects in data analysis, machine learning, time series forecasting and web dev
 - In mid-2009 the bank moved from mass calling to a few hundred selective calls a month. Validated by time, the model reaches a **ROC AUC of 0.69**; a random split would have reported 0.80.
 - Calling the **top 30% reaches 44% of subscribers**, and **75% of the calls convert** (52% at random).
 - A success in the previous campaign is by far the strongest signal; repeated calls and loans lower the chances.
+- **MLOps:** the model runs as a tested monthly batch job with monitoring, drift alerts, recalibration and champion/challenger retraining. A replay of 2010 runs in CI on every push.
 
 ![Calls per month and share of clients who subscribed](Bank_Marketing/images/campaign_over_time.png)
 
-`Python` `scikit-learn` `Logistic Regression` `Classification`
+`Python` `scikit-learn` `Logistic Regression` `Classification` `MLOps` `pytest` `GitHub Actions`
 
-[Notebook](Bank_Marketing/Bank_Marketing.ipynb) · [Challenge description](Bank_Marketing/README.md)
+[Notebook](Bank_Marketing/Bank_Marketing.ipynb) · [Production pipeline](Bank_Marketing/README.md#factory-production-pipeline) · [Challenge description](Bank_Marketing/README.md)
 
 <br>
 
